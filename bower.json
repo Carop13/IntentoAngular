@@ -11,5 +11,9 @@
   ],
   "license": "MIT",
   "homepage": "",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "ui-router#~0.2.15"
+  }
 }

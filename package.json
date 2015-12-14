@@ -1,12 +1,12 @@
 {
   "name": "AngularBasic",
   "private": true,
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-connect": "^2.2.0",
+    "gulp": "^3.9.0"
+  },
   "engines": {
     "npm": "2.11.0",
     "node": "2.2.1"
-  },
-  "dependencies": {
-    "express": "^4.13.3"
   }
 }
