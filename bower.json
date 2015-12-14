@@ -1,0 +1,15 @@
+{
+  "name": "IntentoAngularJs",
+  "authors": [
+    "Carolina Penagos"
+  ],
+  "description": "this is a try to learn angularjs",
+  "main": "app.js",
+  "moduleType": [],
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}

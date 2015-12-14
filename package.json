@@ -1,0 +1,12 @@
+{
+  "name": "AngularBasic",
+  "private": true,
+  "devDependencies": {},
+  "engines": {
+    "npm": "2.11.0",
+    "node": "2.2.1"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

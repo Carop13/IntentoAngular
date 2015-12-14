@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="app.css">
+       
+    </head>
+    <body ng-app="IntentoAngularJs" ng-controller="MainController as main">
+        <h1> Weather challenge </h1>
+        <div class="panel panel-primary" id="panel">
+            <div class="panel-heading"> Lalala </div>
+            <div class="panel-body"> Please write a city
+                <form class="city-input">
+                    <input class="form-control" type="text" ng-model="city" placeholder="City Name" >
+                    <div>
+                        <button class="btn btn-primary" type="submit" ng-click="getBanana()"> Get Weather </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+         <div class="panel panel-primary" id="panel">
+            <div class="panel-heading"> Result </div>
+            <table class="table">
+                <thead>
+                    <th> Field </th>
+                    <th> Result </th>
+                </thead>
+                <tbody>
+                    <tr> 
+                        <td> City </td> 
+                        <td> {{currentWeather.name}} </td> 
+                    </tr>
+                    <tr> 
+                        <td> Country </td>
+                        <td> {{currentWeather.sys.country}} </td> 
+                    </tr>
+                    <tr> 
+                        <td> Latitude  </td>
+                        <td> {{currentWeather.coord.lat}}  </td>
+                    </tr>
+                    <tr> 
+                        <td> Longitude  </td>
+                        <td> {{currentWeather.coord.lon}}  </td>
+                    </tr>
+                    <tr> 
+                        <td> Current Weather </td>
+                        <td> {{currentWeather.weather[0].description}} </td>
+                    </tr>
+                    <tr> 
+                        <td> Wind Speed </td>
+                        <td> {{currentWeather.wind.speed}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<script type="text/javascript" src="main.controller.js"></script>
+    </body>
+</html>
