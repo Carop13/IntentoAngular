@@ -48,6 +48,11 @@
     </div>
 
     <div ng-show="main.show" >
+        <div class="floating-panel">
+          <input ng-click="main.clearMarkers()" type=button value="Hide Markers">
+          <input ng-click="main.showMarkers()" type=button value="Show All Markers">
+          <input ng-click="main.deleteMarkers()" type=button value="Delete Markers">
+        </div>
         <div id="map" ></div>
     </div>
 </div>

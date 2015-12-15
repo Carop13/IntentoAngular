@@ -5,13 +5,8 @@ angular.module('weatherApp')
         $stateProvider.state('home', {
             url : '/',
             templateUrl : 'home.html',
-            controller : 'MainController',
+            controller : 'HomeController',
             controllerAs : 'main'
         })
-        .state('maps',{
-        	url : '/maps',
-            templateUrl : 'maps/maps.html',
-            controller : 'MapsController',
-            controllerAs : 'main'
-        });
+       
     })
