@@ -8,7 +8,8 @@
        
     </head>
     <body ng-app="weatherApp" >
-        <div ng-controller="MainController as main">
+        <div ui-view=""></div>
+<!--         <div ng-controller="MainController as main">
             <h1> Weather challenge </h1>
             <div class="panel panel-primary" id="panel">
                 <div class="panel-heading"> City </div>
@@ -63,14 +64,16 @@
                  <a  href="#" ng-click="openInfoWindow($event, marker)">
             </div>
         </div>
-        </div>
+        </div> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
         <script type="text/javascript" src="lib/angular/angular.js"></script>
+        <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     	<script type="text/javascript" src="main.js"></script>
         <script type="text/javascript" src="maps.controller.js"></script>
         <script type="text/javascript" src="service/weather.service.js"></script>
         <script type="text/javascript" src="main.controller.js"></script>
+        <script type="text/javascript" src="routes.js"></script>
     </body>
 </html>

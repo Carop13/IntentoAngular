@@ -26,7 +26,6 @@ angular.module('weatherApp')
       mapTypeId: google.maps.MapTypeId.TERRAIN
     }
     self.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
   }
 
   self.openInfoWindow = function(e, selectedMarker){
