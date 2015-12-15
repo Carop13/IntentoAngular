@@ -50,12 +50,6 @@ angular.module('weatherApp')
     self.addMarker(myLatLng);
   }
 
-  // This function is to move free in the map
-  // self.openInfoWindow = function(e, selectedMarker){
-  //   e.preventDefault();
-  //   google.maps.event.trigger(selectedMarker, 'click');
-  // }
-
   // This is to know which cities the user have search
   self.marker = function marker(){
     console.log("-----------");
