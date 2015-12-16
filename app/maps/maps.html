@@ -49,9 +49,10 @@
 
     <div ng-show="main.show" >
         <div class="floating-panel">
-          <input ng-click="main.clearMarkers()" type=button value="Hide Markers">
-          <input ng-click="main.showMarkers()" type=button value="Show All Markers">
-          <input ng-click="main.deleteMarkers()" type=button value="Delete Markers">
+            <buttom class="btn btn-primary add-marker" type="submit" ng-click="main.canAddMarkers()"> Add Markers </buttom>
+            <buttom class="btn btn-primary" type="submit" ng-click="main.clearMarkers()"> Hide Markers </buttom>
+            <buttom class="btn btn-primary" type="submit" ng-click="main.showMarkers()"> Show All Markers </buttom>
+            <buttom class="btn btn-primary" type="submit" ng-click="main.deleteMarkers()"> Delete Markers </buttom>
         </div>
         <div id="map" ></div>
     </div>

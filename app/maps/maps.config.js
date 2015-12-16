@@ -1,5 +1,5 @@
 angular.module('weatherApp')
-	.config(function($stateProvider, $urlRouterProvider){
+	.config(function($stateProvider){
 	    $stateProvider.state('maps',{
 	    	url : '/maps',
 	        templateUrl : 'maps/maps.html',

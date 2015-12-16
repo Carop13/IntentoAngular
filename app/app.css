@@ -76,7 +76,7 @@ a {
     -webkit-border-radius: 5px;
 }
 .navbar .nav a:focus{
-    background-color: #3075ad;
+    background-color: #266ca5;
     color: #ffffff;
 }
 .navbar-brand{
@@ -100,4 +100,25 @@ a {
 }
 .floating-panel{
     margin-left: 10%;
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+    20% { transform: scale(0.90); }
+    80% { transform: scale(0.90); }  
+}
+.logo {
+  animation: swing 4s infinite ease-in-out;
+}
+.add-marker:focus{
+    background-color: #000;
+    color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  container ul     { 
+    display: block;
+    float: right;;
+  }
 }

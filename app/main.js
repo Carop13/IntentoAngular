@@ -1,1 +1,5 @@
-angular.module('weatherApp', ['ui.router']);
+angular.module('weatherApp', ['ui.router'])
+.config(function($stateProvider, $urlRouterProvider){
+        
+    $urlRouterProvider.otherwise('/');   
+});
