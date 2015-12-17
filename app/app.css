@@ -109,7 +109,7 @@ a {
     80% { transform: scale(0.90); }  
 }
 .logo {
-  animation: swing 4s infinite ease-in-out;
+  animation: swing 5s infinite ease;
 }
 .add-marker:focus{
     background-color: #000;
@@ -121,4 +121,7 @@ a {
     display: block;
     float: right;;
   }
+}
+.dropdown{
+    float: right;;
 }

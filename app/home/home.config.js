@@ -3,7 +3,7 @@ angular.module('weatherApp')
         
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('home', {
-            url : '/home',
+            url : '/',
             templateUrl : 'home/home.html',
             controller : 'HomeController',
             controllerAs : 'main'

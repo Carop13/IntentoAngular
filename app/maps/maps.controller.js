@@ -18,7 +18,8 @@ angular.module('weatherApp')
         function (reason) {
             
         });
-    };
+        self.newFavorite(city);
+    }
 
     //variables map
     var posibleAddMarkers = true;
@@ -48,6 +49,7 @@ angular.module('weatherApp')
         // Add a marker at the center of the map.
         self.addMarker(myLatLng);
     }
+
     var markerObj = {};
     var newMarker;
     //This function add a marker to the map
@@ -107,7 +109,7 @@ angular.module('weatherApp')
     // Sets the map on all markers in the array.
     self.setMapOnAll = function setMapOnAll(map) {
         for (var i = 0; i < self.markers.length; i++) {
-            self.markers[i].setMap(map);
+            self.markers[i].marker.setMap(map);
         }
     }
 
@@ -128,4 +130,39 @@ angular.module('weatherApp')
         self.markers = [];
     }
 
+    //Delete a specific infoWindow
+    self.deteleMarkerById = function deteleMarkerById(id) {
+        //Find and remove the marker from the Array
+        for (var i = 0; i < self.markers.length; i++) {
+            if (self.markers[i].marker.id === id) {
+                //Remove the marker from Map                  
+                self.showMarkers();
+ 
+                //Remove the marker from array.
+                self.markers.splice(i, 1);
+            }
+        }
+    }
+
+    self.favorites = ['Medellin', 'London', 'New York', 'Berlin', 'Toronto', 'Wellington', 'Halifax']; 
+
+    self.searchFavorite = function searchFavorite(favorite){
+        console.log("Llege!!");
+        self.getWeather(favorite);
+    } 
+
+    self.newFavorite = function newFavorite(city){
+        var equal = false; 
+        for(var i = 0; i < self.favorites.length; i++){
+            if(city.toUpperCase() == self.favorites[i].toUpperCase()){
+                equal = true;
+            }
+        }
+        if(!equal){
+            if(confirm("Add this place as favorite?")){
+                self.favorites.push(city.charAt(0).toUpperCase() + city.slice(1).toLowerCase());
+            }
+        }
+        
+    }
 });     
