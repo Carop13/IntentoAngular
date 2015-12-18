@@ -8,13 +8,15 @@ gulp.task('connect', function() {
   });
 });
  
-gulp.task('html', function () {
-  gulp.src('./app/*.html')
+gulp.task('reload', function () {
+  gulp.src('./app/**/*.*')
     .pipe(connect.reload());
 });
  
 gulp.task('watch', function () {
-  gulp.watch(['./app/*.html'], ['html']);
+  gulp.watch(['./app/**/*.html'], ['reload']);
+  gulp.watch(['./app/**/*.js'], ['reload']);
+  gulp.watch(['./app/styles/*.css'], ['reload']);
 });
  
 gulp.task('default', ['connect', 'watch']);

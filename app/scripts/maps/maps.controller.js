@@ -147,7 +147,6 @@ angular.module('weatherApp')
     self.favorites = ['Medellin', 'London', 'New York', 'Berlin', 'Toronto', 'Wellington', 'Halifax']; 
 
     self.searchFavorite = function searchFavorite(favorite){
-        console.log("Llege!!");
         self.getWeather(favorite);
     } 
 

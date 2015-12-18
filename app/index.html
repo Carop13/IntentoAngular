@@ -3,11 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-signin-client_id" content="31313449476-a119alt1t7ijufl2437sp93386o221qo.apps.googleusercontent.com">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="styles/app.css">
        
     </head>
-    <body ng-app="weatherApp" >
+    <body ng-app="weatherApp">
         <nav class="navbar ">
             <div class="container">
                 <div class="navbar-header">
@@ -18,57 +19,33 @@
                 <ul class="nav navbar-nav navbar-right ">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#maps">Maps</a></li>
-                    
+                    <li><a ui-sref="home.modal" data-toggle="modal" data-target="#myModal">Login</a></li>
                 </ul>
             </div>
         </nav>
 
-        <div ui-view=""></div>
+        <div ui-view="">
+          
+        </div>
 
-      
-
-    <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"> Share on Facebook </a>
+   <!--  <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"> Share on Facebook </a>
 
     <div id="shareBtn" class="btn btn-success clearfix">Share Dialog</div>
-    <script>
-        document.getElementById('shareBtn').onclick = function() {
-          FB.ui({
-            display: 'popup',
-            method: 'share',
-            href: 'https://developers.facebook.com/docs/',
-          }, function(response){});
-        }
-    </script>
+   -->
 
-        <script>
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '503877523117604',
-              xfbml      : true,
-              version    : 'v2.5'
-            });
-
-          };
-
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
-        </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script type="text/javascript" src="lib/angular/angular.js"></script>
         <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-    	<script type="text/javascript" src="main.js"></script>
-        <script type="text/javascript" src="maps/maps.controller.js"></script>
-        <script type="text/javascript" src="home/home.controller.js"></script>
-        <script type="text/javascript" src="service/weather.service.js"></script>
-        <script type="text/javascript" src="home/home.config.js"></script>
-        <script type="text/javascript" src="maps/maps.config.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="scripts/maps/maps.controller.js"></script>
+        <script type="text/javascript" src="scripts/home/home.controller.js"></script>
+        <script type="text/javascript" src="scripts/service/weather.service.js"></script>
+        <script type="text/javascript" src="scripts/home/home.config.js"></script>
+        <script type="text/javascript" src="scripts/maps/maps.config.js"></script>
+        <script type="text/javascript" src="scripts/modals/modal.dialog.controller.js"></script>
     </body>
 </html>
