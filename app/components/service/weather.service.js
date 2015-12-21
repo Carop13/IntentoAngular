@@ -1,12 +1,10 @@
 angular.module('weatherApp')
-  .factory('weatherService', function($http){
+.factory('weatherService', function($http){
+  var firstPart = 'http://api.openweathermap.org/data/2.5/weather?';
+  var secondPart = '&appid=2de143494c0b295cca9337e1e96b00e0'
 
   function getWeather(city){
-    return $http.get(
-      'http://api.openweathermap.org/data/2.5/weather?q='
-      + city
-      + '&appid=2de143494c0b295cca9337e1e96b00e0')
-      .then(function(response){
+    return $http.get(firstPart + 'q=' + city + secondPart).then(function(response){
         return response.data;
       }, function(error){
         console.log(error);
@@ -16,10 +14,7 @@ angular.module('weatherApp')
 
   function getWeatherByLatLng(lat, lng){
     return $http.get(
-      'http://api.openweathermap.org/data/2.5/weather?lat='
-      + lat + '&lon=' + lng
-      + '&appid=2de143494c0b295cca9337e1e96b00e0')
-      .then(function(response){
+      firstPart + 'lat=' + lat + '&lon=' + lng + secondPart).then(function(response){
         return response.data;
       }, function(error){
         console.log(error);

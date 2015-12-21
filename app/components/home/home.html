@@ -1,0 +1,13 @@
+<h1> Welcome to Carop Pages </h1>
+<h3 class="description"> This pages is only to learn different programming languages with Talos Digital purpose </h3>
+
+<div ui-view="">
+
+</div>
+
+<div class="user-info" ng-show="home.show">
+  <h3> Name: {{home.profile.getName()}} </h3>
+  <p>Email: {{home.profile.getEmail()}}</p>
+  <img src="{{home.profile.getImageUrl()}}">
+</div>
+
