@@ -3,16 +3,16 @@ angular.module('weatherApp')
     
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('home', {
-        url : '/home',
+        url : '/',
         templateUrl : 'scripts/home/home.html',
         controller : 'HomeController',
-        controllerAs : 'main'
+        controllerAs : 'home'
     })
     .state('home.modal', {
-	    url: '/modal',
+	    url: '/',
 	    templateUrl: 'scripts/modals/modal.dialog.html',
 	    controller : 'ModalDialogController',
-	    controllerAs : 'main'
+	    controllerAs : 'modal'
 	});
 
 });

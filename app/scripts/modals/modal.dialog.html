@@ -4,19 +4,26 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				<h4 class="modal-title" id="myModalLabel">Log in</h4>
 			</div>
 			<div class="modal-body">
-				<button class="btn btn-block btn-facebook" ng-click="main.FBLogin()">
+				<button class="btn btn-block btn-facebook" ng-click="modal.FBLogin()">
 					<i class="ion-social-facebook"></i> Sign in with Facebook
 		        </button>
-		        <div  id="main.my-signin2" class="g-signin2" data-onsuccess="onSignIn"></div>
+
 				
+				
+				<button id="customBtn"  class="btn btn-block btn-google-plus" ng-click="modal.startApp()">
+		         	 <span class="icon"></span>
+			 		 <span class="buttonText"> Sign in with Google</span>
+		        </button>
+				
+				
+
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
 			</div>
 		</div>
 	</div>
 </div>
-

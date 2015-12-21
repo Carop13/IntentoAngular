@@ -2,6 +2,7 @@ angular.module('weatherApp')
 .controller('ModalDialogController', function() {
 
 	var self = this;
+	self.show = false;;
 
 	//   Facebook
 	self.name = 'Login please';
@@ -22,21 +23,33 @@ angular.module('weatherApp')
 		  });
 	};
 
-	self.onSignIn = function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail());
-	}
+	// google sign in
+	var googleUser = {};
+	self.startApp = function startApp() {
+		gapi.load('auth2', function(){
+		  // Retrieve the singleton for the GoogleAuth library and set up the client.
+		  auth2 = gapi.auth2.init({
+		    client_id: '31313449476-a119alt1t7ijufl2437sp93386o221qo.apps.googleusercontent.com',
+		    cookiepolicy: 'single_host_origin',
+		    // Request scopes in addition to 'profile' and 'email'
+		    //scope: 'additional_scope'
+		  });
+		  self.attachSignin(document.getElementById('customBtn'));
+		});
+	};
 
-	self.signOut = function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
+	self.attachSignin = function attachSignin(element) {
+		auth2.attachClickHandler(element, {},
+		    function(googleUser) {
+		          self.profile = googleUser.getBasicProfile();
+				  console.log('Name: ' + self.profile.getName());
+				  console.log('Image URL: ' + self.profile.getImageUrl());
+				  console.log('Email: ' + self.profile.getEmail());
+				  self.show = true;
+		    }, function(error) {
+		      alert(JSON.stringify(error, undefined, 2));
+		    });
 	}
-
 });     
 
 

@@ -139,3 +139,22 @@ a {
   color: #fff;
   background-color: #294786;
 }
+
+.btn-google-plus {
+  color: #fff;
+  background-color: #dd4b39;
+  border: 1px solid #d54331;
+}
+
+.btn-google-plus:hover,
+.btn-google-plus:focus {
+  color: #fff;
+  background-color: #cb3927;
+} 
+.share{
+    width: 80%;
+    margin-left: 10%;
+}
+.share .fb-share-button{
+    margin-left: 0%;
+}
