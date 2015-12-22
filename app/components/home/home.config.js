@@ -8,11 +8,5 @@ angular.module('weatherApp')
     controller : 'HomeController',
     controllerAs : 'home'
   });
-  // .state('modal', {
-  //   url: '/',
-  //   templateUrl: 'components/modals/modal.dialog.html',
-  //   controller : 'ModalDialogController',
-  //   controllerAs : 'modal'
-  // });
 
 });

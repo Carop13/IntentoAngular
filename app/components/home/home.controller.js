@@ -6,8 +6,7 @@ angular.module('weatherApp')
   self.profile
   self.getUserInfo = function getUserInfo($scope){
       self.show = true;
-  }
-         
+  }  
 
 });     
 

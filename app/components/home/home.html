@@ -7,9 +7,16 @@
 
 </div>
 
-<div class="user-info" ng-show="home.show">
-  <h3> Name: {{home.profile.getName()}} </h3>
-  <p>Email: {{home.profile.getEmail()}}</p>
-  <img src="{{home.profile.getImageUrl()}}">
+<div class="user-info" ng-show="modal.show">
+  <h2>Log in Google</h2>
+  <h3> Name: {{modal.profile.getName()}} </h3>
+  <h4>Email: {{modal.profile.getEmail()}}</h4>
+  <img src="{{modal.profile.getImageUrl()}}">
+</div>
+
+<div class="user-info" ng-show="modal.show">
+  <h2>Log in Facebook </h2>
+  <h3> Name: {{modal.fbProfile.name}} </h3>
+  <h4> Id: {{modal.fbProfile.id}}</h4>
 </div>
 

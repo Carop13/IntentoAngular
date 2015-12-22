@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Log in</h4>
       </div>
       <div class="modal-body">
-        <button class="btn btn-block btn-facebook" ng-click="modal.FBLogin()">
+        <button class="btn btn-block btn-facebook" ng-click="modal.fBStatus()">
           <i class="ion-social-facebook"></i> Sign in with Facebook
         </button>
         <button id="customBtn"  class="btn btn-block btn-google-plus" ng-click="modal.startApp()">
@@ -16,7 +16,7 @@
         </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="modal.loadData()">Close </button>
       </div>
     </div>
   </div>

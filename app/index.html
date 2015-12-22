@@ -4,8 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-signin-client_id" content="31313449476-a119alt1t7ijufl2437sp93386o221qo.apps.googleusercontent.com">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/app.css">
+    <!-- inject:css -->
+
+    <!-- endinject -->
      
   </head>
   <body ng-app="weatherApp">
@@ -16,22 +19,30 @@
       </div>
 
       <custom-modal></custom-modal>
+      <log-out-modal></log-out-modal>
      
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <script src="https://apis.google.com/js/api:client.js"></script>
+     <!-- inject:js -->
+      <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+      <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
       <script type="text/javascript" src="lib/angular/angular.js"></script>
+      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+      <script type="text/javascript" src="lib/angular-ui-map/ui-map.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script type="text/javascript" src="lib/angular-google-gapi/angular-google-gapi.js"></script>
       <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+      <!-- endinject -->
+      
+      <!-- direction -->
+
       <script type="text/javascript" src="main.js"></script>
       <script type="text/javascript" src="components/maps/maps.controller.js"></script>
       <script type="text/javascript" src="components/home/home.controller.js"></script>
       <script type="text/javascript" src="components/service/weather.service.js"></script>
       <script type="text/javascript" src="components/home/home.config.js"></script>
       <script type="text/javascript" src="components/maps/maps.config.js"></script>
-      <script type="text/javascript" src="components/modals/modal.dialog.controller.js"></script>
-      <script type="text/javascript" src="components/modals/modal.directive.js"></script>
+      <script type="text/javascript" src="components/modal.login/modal.dialog.controller.js"></script>
+      <script type="text/javascript" src="components/modal.login/modal.dialog.directive.js"></script>
+      <script type="text/javascript" src="components/modal.logout/modal.logout.directive.js"></script>
       <script type="text/javascript" src="components/directives/nav.bar.controller.js"></script>
       <script type="text/javascript" src="components/directives/nav.bar.directive.js"></script>
   </body>

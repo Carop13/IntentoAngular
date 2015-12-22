@@ -1,8 +1,9 @@
 angular.module('weatherApp')
 .directive('caroNavBar', [function () {
-	return {
-		restrict: 'E',
-		templateUrl: 'components/directives/nav.bar.html',
-		controller : 'NavBarController'
-	};
+  return {
+    restrict: 'E',
+    templateUrl: 'components/directives/nav.bar.html',
+    controller : 'NavBarController',
+    controllerAs: 'nav'
+  };
 }])

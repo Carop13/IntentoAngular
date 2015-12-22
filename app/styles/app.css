@@ -7,7 +7,7 @@ h1{
   margin-left: 10%;
 }
 .container{
-  width: 900px;
+  width: 100%;
 }
 .form-control{
   margin: 1em 0 1em 0;
@@ -119,12 +119,12 @@ a {
   color: #ffffff;
 }
 
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
   container ul     { 
     display: block;
     float: right;;
   }
-}
+}*/
 .dropdown{
   float: right;;
 }
