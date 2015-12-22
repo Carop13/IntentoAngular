@@ -2,31 +2,17 @@ angular.module('weatherApp')
 .controller('ModalDialogController', function() {
 
   var self = this;
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1644758169145041',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-
-  };
-
-  (function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/client:plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-  //   Facebook
   self.name = 'Login please';
-  self.FBLogin = function FBLogin(){
+  self.FBLogin = FBLogin;
+  self.startApp = startApp;
+  self.attachSignin = attachSignin;
+  self.startApp();
+  
+
+  //////////////////////////////////////////////////////////////////////
+  
+  //   Facebook
+  function FBLogin(){
     FB.login(function(response) {
       if(response.authResponse){
         console.log('Welcome!  Fetching your information.... ');
@@ -45,7 +31,7 @@ angular.module('weatherApp')
 
   // google sign in
   var googleUser = {};
-  self.startApp = function startApp() {
+  function startApp() {
     gapi.load('auth2', function(){
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
@@ -58,7 +44,7 @@ angular.module('weatherApp')
     });
   };
 
-  self.attachSignin = function attachSignin(element) {
+  function attachSignin(element) {
     auth2.attachClickHandler(element, {},
       function(googleUser) {
         self.profile = googleUser.getBasicProfile();
@@ -70,7 +56,7 @@ angular.module('weatherApp')
         alert(JSON.stringify(error, undefined, 2));
       });
   }
-
+  
 });     
 
 

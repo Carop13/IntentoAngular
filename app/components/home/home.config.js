@@ -7,12 +7,12 @@ angular.module('weatherApp')
     templateUrl : 'components/home/home.html',
     controller : 'HomeController',
     controllerAs : 'home'
-  })
-  .state('modal', {
-    url: '/',
-    templateUrl: 'components/modals/modal.dialog.html',
-    controller : 'ModalDialogController',
-    controllerAs : 'modal'
   });
+  // .state('modal', {
+  //   url: '/',
+  //   templateUrl: 'components/modals/modal.dialog.html',
+  //   controller : 'ModalDialogController',
+  //   controllerAs : 'modal'
+  // });
 
 });

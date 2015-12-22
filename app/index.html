@@ -9,24 +9,13 @@
      
   </head>
   <body ng-app="weatherApp">
-    <nav class="navbar ">
-      <div class="container">
-          <div class="navbar-header">
-              <a class="navbar-brand" href="/"> <span> <img class="logo" src="img/Talos.png"> <span> AngularJs Project </a>
-
-          </div>
-
-          <ul class="nav navbar-nav navbar-right ">
-              <li><a ui-sref="home">Home</a></li>
-              <li><a ui-sref="maps">Maps</a></li>
-              <li><a ui-sref="modal" data-toggle="modal" data-target="#myModal">Login</a></li>
-          </ul>
-      </div>
-    </nav>
+      
 
       <div ui-view="">
         
       </div>
+
+      <custom-modal></custom-modal>
      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -42,5 +31,8 @@
       <script type="text/javascript" src="components/home/home.config.js"></script>
       <script type="text/javascript" src="components/maps/maps.config.js"></script>
       <script type="text/javascript" src="components/modals/modal.dialog.controller.js"></script>
+      <script type="text/javascript" src="components/modals/modal.directive.js"></script>
+      <script type="text/javascript" src="components/directives/nav.bar.controller.js"></script>
+      <script type="text/javascript" src="components/directives/nav.bar.directive.js"></script>
   </body>
 </html>
