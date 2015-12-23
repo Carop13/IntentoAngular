@@ -6,7 +6,6 @@ angular.module('weatherApp')
     if(es === " Sign in "){
       $("#myModal").modal('show');
   	}else{
-  		console.log("llegue al logout");
        $("#myModalLogOut").modal('show');
     }
   };

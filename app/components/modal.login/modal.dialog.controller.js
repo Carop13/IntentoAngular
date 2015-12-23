@@ -9,10 +9,14 @@ angular.module('weatherApp')
   self.attachSignin = attachSignin;
   self.startApp();
   self.loadData = loadData;
-  self.fBLogout = fBLogout;
+  self.logout = logout;
   self.fBStatus = fBStatus;
   self.statusChangeCallback = statusChangeCallback;
   self.fBLoginSuccess = fBLoginSuccess;
+  self.fbConnected = false;
+  self.ggleConnected = false;
+  self.unloadData = unloadData;
+  
 
   //////////////////////////////////////////////////////////////////////
   
@@ -57,15 +61,26 @@ angular.module('weatherApp')
       console.log(accessToken);
     });
     document.getElementById('btn-login').innerHTML = "Sign Out";
-
+    self.fbConnected = true;
+    loadData();
   }
 
 
-  function fBLogout(){
-    FB.logout(function(response) {
+  function logout(){
+    //facebook disconnect
+    if(self.fbConnected){
+      FB.logout(function(response) {
       // Person is now logged out
-      console.log("Logout");
-    });
+        console.log("Logout");
+        self.fbConnected = false;
+       });
+    };
+    if(self.ggleConnected){
+      auth2 = gapi.auth.signOut();
+      console.log("Sign out Google");
+    }
+    unloadData();
+    document.getElementById('btn-login').innerHTML = " Sign in ";
   };
   
   // google sign in
@@ -79,6 +94,7 @@ angular.module('weatherApp')
         // Request scopes in addition to 'profile' and 'email'
         //scope: 'additional_scope'
       });
+     
       self.attachSignin(document.getElementById('customBtn'));
     });
   };
@@ -86,22 +102,32 @@ angular.module('weatherApp')
   function attachSignin(element) {
     auth2.attachClickHandler(element, {},
       function(googleUser) {
-        self.profile = googleUser.getBasicProfile();
-        // console.log('Name: ' + self.profile.getName());
-        // console.log('Image URL: ' + self.profile.getImageUrl());
-        // console.log('Email: ' + self.profile.getEmail());
-        self.profileName = self.profile.getName();
-        console.log(self.profileName);
+        self.profileGoogle = googleUser.getBasicProfile();
+        // console.log('Name: ' + self.profileGoogle.getName());
+        // console.log('Image URL: ' + self.profileGoogle.getImageUrl());
+        // console.log('Email: ' + self.profileGoogle.getEmail());
+        
+        console.log(self.profileGoogle.getName());
+        document.getElementById('btn-login').innerHTML = "Sign Out";
+        self.ggleConnected = true;
+        
       }, function(error) {
         alert(JSON.stringify(error, undefined, 2));
       });
+    
   }
  
 
   function loadData(){
     self.show = true;
   }
-  
+  function unloadData(){
+    self.show = false;
+  }
+
+
+
+
 });     
 
 

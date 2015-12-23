@@ -27,7 +27,7 @@ angular.module('weatherApp')
     function (reason) {
         
     });
-    self.newFavorite(city);
+    //self.newFavorite(city);
   }
 
   // Deploy Map Country
@@ -74,14 +74,14 @@ angular.module('weatherApp')
       }
       weatherService.getWeatherByLatLng(newMarker.position.lat(), newMarker.position.lng())
         .then(function(weatherInfo) {
-         self.infoWindowMarker(weatherInfo);
+         self.infoWindowMarker(weatherInfo + '<div><button> Holi </button></div>');
         },
         function(reason) {
           // TODO: display info window saying your internet is bad and you should feel bad.
         });
     });
 
-    new google.maps.event.trigger( newMarker, 'click' );
+    new google.maps.event.trigger(newMarker, 'click' );
   }
 
   self.infoWindowMarker = function infoWindowMarker(weatherInfo){
@@ -148,18 +148,24 @@ angular.module('weatherApp')
     self.getWeather(favorite);
   } 
 
-  self.newFavorite = function newFavorite(city){
+  self.newFavorite = function newFavorite(){
     var equal = false; 
     for(var i = 0; i < self.favorites.length; i++){
       if(city.toUpperCase() == self.favorites[i].toUpperCase()){
         equal = true;
       }
     }
-    if(!equal){
-      if(confirm("Add this place as favorite?")){
-        self.favorites.push(city.charAt(0).toUpperCase() + city.slice(1).toLowerCase());
-      }
-    }
+    // if(!equal){
+    //   if(confirm("Add this place as favorite?")){
+    //     self.favorites.push(city.charAt(0).toUpperCase() + city.slice(1).toLowerCase());
+    //   }
+    // }
       
+  }
+
+  var currentURL = "http://127.0.0.1:8080/maps.html";
+  self.gplusShare = function gplusShare() {
+    window.open("https://plus.google.com/share?url="+currentURL,"","height=550,width=525,left=100,top=100,menubar=0");
+    return false;
   }
 });     

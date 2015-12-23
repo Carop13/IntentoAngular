@@ -60,19 +60,32 @@
   </div>
 
   <div class="share">
-    <g:plus action="share"></g:plus>
+    <!-- <g:plusone size="tall" ></g:plusone> -->
+    <button class="btn-googleplus" ng-click="maps.gplusShare()">
+      Google+ </button>
     <div class="fb-share-button" 
       data-href="http://localhost:8080/maps.html" 
-      data-layout="button_count">
+      data-layout="button">
     </div>
   </div>
+  <div>
+    <!-- Google Plus -->
+    <a href="https://plus.google.com/share?url=http://127.0.0.1:8080/maps.html" class="share-btn google-plus">
+        <i class="fa fa-google-plus fa-2x"></i>
+    </a>
 
+    <!-- Facebook -->
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/maps.html" class="share-btn facebook">
+        <i class="fa fa-facebook fa-2x"></i>
+    </a>
+  </div>
   <div ng-show="maps.show" >
     <div class="floating-panel">
       <buttom class="btn btn-primary add-marker" type="submit" ng-click="maps.canAddMarkers()"> Add Markers </buttom>
       <buttom class="btn btn-primary" type="submit" ng-click="maps.clearMarkers()"> Hide Markers </buttom>
       <buttom class="btn btn-primary" type="submit" ng-click="maps.showMarkers()"> Show All Markers </buttom>
       <buttom class="btn btn-primary" type="submit" ng-click="maps.deleteMarkers()"> Delete Markers </buttom>
+      <buttom class="btn btn-primary" type="submit" ng-click="maps.newFavorite()"> Add Marker to Favorite </buttom>
     </div>
     <div id="map" ></div>
   </div>
