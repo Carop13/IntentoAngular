@@ -4,7 +4,9 @@ angular.module('weatherApp', ['ui.router'])
     window.fbAsyncInit = function() {
         FB.init({
           appId      : '1644758169145041',
-          xfbml      : true,
+          status: true, 
+          cookie: true, 
+          xfbml: true,
           version    : 'v2.5'
         });
     };

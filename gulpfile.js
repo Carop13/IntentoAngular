@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var  connect = require('gulp-connect');
 var inject = require('gulp-inject');
+var wiredep = require('wiredep').stream;
  
 gulp.task('connect', function() {
   connect.server({
@@ -20,13 +21,22 @@ gulp.task('watch', function () {
   gulp.watch(['./app/styles/*.css'], ['reload']);
 });
  
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['connect','inject', 'bower', 'watch']);
 
-gulp.task('index', function () {
+gulp.task('inject', function () {
   var target = gulp.src('./app/index.html');
   // It's not necessary to read the files (will speed up things), we're only after their paths: 
-  var sources = gulp.src(['./app/**/*.js', './app/**/*.css'], {read: false});
+  var sources = gulp.src(['!./app/lib/**/*', './app/**/*.js', './app/styles/**/*.css'], {read: false});
  
-  return target.pipe(inject(sources))
-    .pipe(gulp.dest('./app'));
+  return target.pipe(inject(sources, {relative: true}))
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('bower', function () {
+  gulp.src('./app/index.html')
+    .pipe(wiredep({
+      optional: 'configuration',
+      goes: 'here'
+    }))
+    .pipe(gulp.dest('./dest'));
 });

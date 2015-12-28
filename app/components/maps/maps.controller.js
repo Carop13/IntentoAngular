@@ -74,7 +74,7 @@ angular.module('weatherApp')
       }
       weatherService.getWeatherByLatLng(newMarker.position.lat(), newMarker.position.lng())
         .then(function(weatherInfo) {
-         self.infoWindowMarker(weatherInfo + '<div><button> Holi </button></div>');
+         self.infoWindowMarker(weatherInfo);
         },
         function(reason) {
           // TODO: display info window saying your internet is bad and you should feel bad.
@@ -88,7 +88,7 @@ angular.module('weatherApp')
      // Construct a new InfoWindow.
     markerObj.weatherInfo = weatherInfo;
     var infoWindow = new google.maps.InfoWindow({
-      content: weatherInfo.weather[0].description
+      content: weatherInfo.weather[0].description + "<br /><input type = 'button' onclick = 'newFavorite(" + newMarker.id + ");' value = 'Add to Favorite' />"
     });
     infoWindow.open(self.map, newMarker);
   }
@@ -148,7 +148,7 @@ angular.module('weatherApp')
     self.getWeather(favorite);
   } 
 
-  self.newFavorite = function newFavorite(){
+  self.newFavorite = function newFavorite(id){
     var equal = false; 
     for(var i = 0; i < self.favorites.length; i++){
       if(city.toUpperCase() == self.favorites[i].toUpperCase()){
@@ -166,6 +166,12 @@ angular.module('weatherApp')
   var currentURL = "http://127.0.0.1:8080/maps.html";
   self.gplusShare = function gplusShare() {
     window.open("https://plus.google.com/share?url="+currentURL,"","height=550,width=525,left=100,top=100,menubar=0");
+    return false;
+  }
+
+  var currentURLFB = "http://localhost:8080/maps.html";
+  self.fbShare = function fbShare() {
+    window.open("http://www.facebook.com/sharer/sharer.php?u="+currentURLFB,"","height=550,width=525,left=100,top=100,menubar=0");
     return false;
   }
 });     

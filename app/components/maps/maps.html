@@ -59,26 +59,7 @@
     </table>
   </div>
 
-  <div class="share">
-    <!-- <g:plusone size="tall" ></g:plusone> -->
-    <button class="btn-googleplus" ng-click="maps.gplusShare()">
-      Google+ </button>
-    <div class="fb-share-button" 
-      data-href="http://localhost:8080/maps.html" 
-      data-layout="button">
-    </div>
-  </div>
-  <div>
-    <!-- Google Plus -->
-    <a href="https://plus.google.com/share?url=http://127.0.0.1:8080/maps.html" class="share-btn google-plus">
-        <i class="fa fa-google-plus fa-2x"></i>
-    </a>
-
-    <!-- Facebook -->
-    <a href="http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/maps.html" class="share-btn facebook">
-        <i class="fa fa-facebook fa-2x"></i>
-    </a>
-  </div>
+  
   <div ng-show="maps.show" >
     <div class="floating-panel">
       <buttom class="btn btn-primary add-marker" type="submit" ng-click="maps.canAddMarkers()"> Add Markers </buttom>
@@ -88,6 +69,17 @@
       <buttom class="btn btn-primary" type="submit" ng-click="maps.newFavorite()"> Add Marker to Favorite </buttom>
     </div>
     <div id="map" ></div>
+  </div>
+  <div class="share">
+    <!-- Google Plus -->
+    <a ng-click="maps.gplusShare()" class="share-btn google-plus">
+        <i class="fa fa-google-plus fa-2x"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a ng-click="maps.fbShare()" class="share-btn facebook">
+        <i class="fa fa-facebook fa-2x"></i>
+    </a>
   </div>
   <div ui-view="">
   </div>

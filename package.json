@@ -9,5 +9,8 @@
   "engines": {
     "npm": "2.11.0",
     "node": "2.2.1"
+  },
+  "dependencies": {
+    "wiredep": "^3.0.0"
   }
 }

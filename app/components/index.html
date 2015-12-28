@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="31313449476-a119alt1t7ijufl2437sp93386o221qo.apps.googleusercontent.com">
+    <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
+    <meta property="og:description"        content="How much does culture influence creative thinking?" />
+    <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="/app/styles/app.css">
+
+    <!-- endinject -->
+     
+  </head>
+  <body ng-app="weatherApp">
+      
+
+      <div ui-view="">
+        
+      </div>
+
+      <custom-modal></custom-modal>
+      <log-out-modal></log-out-modal>
+     
+     <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+      <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+      <script type="text/javascript" src="lib/angular/angular.js"></script>
+      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+      <script type="text/javascript" src="lib/angular-ui-map/ui-map.js"></script>
+      <script type="text/javascript" src="lib/angular-google-gapi/angular-google-gapi.min.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script src="https://apis.google.com/js/client.js?onload=init"></script>
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+      <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+
+     <!-- inject:js -->
+      
+      
+      <script src="/app/components/directives/nav.bar.controller.js"></script>
+      
+      
+      <script src="/app/components/directives/nav.bar.directive.js"></script>
+      
+      
+      <script src="/app/components/home/home.config.js"></script>
+      
+      
+      <script src="/app/components/home/home.controller.js"></script>
+      
+      
+      <script src="/app/components/maps/maps.config.js"></script>
+      
+      
+      <script src="/app/components/maps/maps.controller.js"></script>
+      
+      
+      <script src="/app/components/modal.login/modal.dialog.controller.js"></script>
+      
+      
+      <script src="/app/components/modal.login/modal.dialog.directive.js"></script>
+      
+      
+      <script src="/app/components/service/weather.service.js"></script>
+      
+      
+      <script src="/app/components/modal.logout/modal.logout.directive.js"></script>
+      
+      
+      <!-- endinject -->
+      
+      <!-- direction -->
+
+      <script type="text/javascript" src="components/maps/maps.controller.js"></script>
+
+  </body>
+</html>
