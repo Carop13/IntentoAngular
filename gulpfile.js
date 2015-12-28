@@ -21,7 +21,7 @@ gulp.task('watch', function () {
   gulp.watch(['./app/styles/*.css'], ['reload']);
 });
  
-gulp.task('default', ['connect','inject', 'bower', 'watch']);
+gulp.task('default', ['connect', 'wiredep', 'inject', 'watch']);
 
 gulp.task('inject', function () {
   var target = gulp.src('./app/index.html');
@@ -32,11 +32,11 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('bower', function () {
+gulp.task('wiredep', function () {
   gulp.src('./app/index.html')
     .pipe(wiredep({
       optional: 'configuration',
       goes: 'here'
     }))
-    .pipe(gulp.dest('./dest'));
+    .pipe(gulp.dest('app'));
 });

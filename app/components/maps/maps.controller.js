@@ -86,9 +86,10 @@ angular.module('weatherApp')
 
   self.infoWindowMarker = function infoWindowMarker(weatherInfo){
      // Construct a new InfoWindow.
+    var actualCity = weatherInfo.name;
     markerObj.weatherInfo = weatherInfo;
     var infoWindow = new google.maps.InfoWindow({
-      content: weatherInfo.weather[0].description + "<br /><input type = 'button' onclick = 'newFavorite(" + newMarker.id + ");' value = 'Add to Favorite' />"
+      content: weatherInfo.weather[0].description + "<br /><input type = 'button' onclick = '" + self.newFavorite( actualCity ) + "' value = 'Add to Favorite' />"
     });
     infoWindow.open(self.map, newMarker);
   }
@@ -148,11 +149,11 @@ angular.module('weatherApp')
     self.getWeather(favorite);
   } 
 
-  self.newFavorite = function newFavorite(id){
-    var equal = false; 
+  self.newFavorite = function newFavorite(actualCity){
+    // var equal = false; 
     for(var i = 0; i < self.favorites.length; i++){
-      if(city.toUpperCase() == self.favorites[i].toUpperCase()){
-        equal = true;
+      if(actualCity.toUpperCase() == self.favorites[i].toUpperCase()){
+        self.favorites.push(actualCity.charAt(0).toUpperCase() + actualCity.slice(1).toLowerCase());
       }
     }
     // if(!equal){

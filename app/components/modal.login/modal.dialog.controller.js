@@ -57,6 +57,7 @@ angular.module('weatherApp')
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       self.fbProfile = response;
+      console.log(response);
       var accessToken = FB.getAuthResponse();
       console.log(accessToken);
     });

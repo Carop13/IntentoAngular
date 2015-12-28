@@ -62,11 +62,11 @@
   
   <div ng-show="maps.show" >
     <div class="floating-panel">
-      <buttom class="btn btn-primary add-marker" type="submit" ng-click="maps.canAddMarkers()"> Add Markers </buttom>
+     <!--  <buttom class="btn btn-primary add-marker" type="submit" ng-click="maps.canAddMarkers()"> Add Markers </buttom> -->
       <buttom class="btn btn-primary" type="submit" ng-click="maps.clearMarkers()"> Hide Markers </buttom>
       <buttom class="btn btn-primary" type="submit" ng-click="maps.showMarkers()"> Show All Markers </buttom>
       <buttom class="btn btn-primary" type="submit" ng-click="maps.deleteMarkers()"> Delete Markers </buttom>
-      <buttom class="btn btn-primary" type="submit" ng-click="maps.newFavorite()"> Add Marker to Favorite </buttom>
+      <!-- <buttom class="btn btn-primary" type="submit" ng-click="maps.newFavorite()"> Add Marker to Favorite </buttom> -->
     </div>
     <div id="map" ></div>
   </div>
@@ -77,10 +77,17 @@
     </a>
 
     <!-- Facebook -->
-    <a ng-click="maps.fbShare()" class="share-btn facebook">
-        <i class="fa fa-facebook fa-2x"></i>
+    <a ng-click="maps.fbShare()" data-share="true" class="share-btn facebook">
+        <i class="fa fa-facebook fa-2x"></i> 
     </a>
   </div>
+
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
   <div ui-view="">
   </div>
 </div>

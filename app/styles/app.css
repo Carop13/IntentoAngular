@@ -1,6 +1,7 @@
 h1{
   text-align: center;
-  padding: 15px;
+  padding: 5px;
+  margin: 5px;
 }
 .panel{
   width: 80%;
@@ -87,6 +88,7 @@ a {
   margin-left: 10%;
 }
 .description{
+  margin: 10px;
   text-align: center;
 }
 .navbar-brand img{
@@ -197,4 +199,8 @@ a {
 
 .share-btn i{
   margin-top: 8%;
+}
+.logo-app{
+  width: 60%;
+  margin-left: 20%;
 }

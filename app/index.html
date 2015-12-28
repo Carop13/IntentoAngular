@@ -16,41 +16,40 @@
   <body ng-app="weatherApp">
       
 
-      <div ui-view="">
-        
-      </div>
+    <div ui-view="">
 
-      <custom-modal></custom-modal>
-      <log-out-modal></log-out-modal>
-     
-     <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
-      <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
-      <script type="text/javascript" src="lib/angular/angular.js"></script>
-      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
-      <script type="text/javascript" src="lib/angular-ui-map/ui-map.js"></script>
-      <script type="text/javascript" src="lib/angular-google-gapi/angular-google-gapi.min.js"></script>
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <script src="https://apis.google.com/js/client.js?onload=init"></script>
-      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-      <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    </div>
 
-     <!-- inject:js -->
-     <script src="main.js"></script>
-     <script src="components/directives/nav.bar.controller.js"></script>
-     <script src="components/directives/nav.bar.directive.js"></script>
-     <script src="components/home/home.config.js"></script>
-     <script src="components/home/home.controller.js"></script>
-     <script src="components/maps/maps.config.js"></script>
-     <script src="components/maps/maps.controller.js"></script>
-     <script src="components/modal.login/modal.dialog.controller.js"></script>
-     <script src="components/modal.login/modal.dialog.directive.js"></script>
-     <script src="components/modal.logout/modal.logout.directive.js"></script>
-     <script src="components/service/weather.service.js"></script>
-     <!-- endinject -->
-      
+    <custom-modal></custom-modal>
+    <log-out-modal></log-out-modal>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
     <!-- bower:js -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-google-gapi/angular-google-gapi.min.js"></script>
+    <script src="lib/angular-ui-utils/ui-utils.js"></script>
+    <script src="lib/angular-ui-map/ui-map.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular-google-plus/dist/angular-google-plus.js"></script>
     <!-- endbower -->
-
+    
+    <!-- inject:js -->
+    <script src="main.js"></script>
+    <script src="components/directives/nav.bar.controller.js"></script>
+    <script src="components/directives/nav.bar.directive.js"></script>
+    <script src="components/home/home.config.js"></script>
+    <script src="components/home/home.controller.js"></script>
+    <script src="components/maps/maps.config.js"></script>
+    <script src="components/maps/maps.controller.js"></script>
+    <script src="components/modal.login/modal.dialog.controller.js"></script>
+    <script src="components/modal.login/modal.dialog.directive.js"></script>
+    <script src="components/modal.logout/modal.logout.directive.js"></script>
+    <script src="components/service/weather.service.js"></script>
+    <!-- endinject -->
 
   </body>
 </html>
