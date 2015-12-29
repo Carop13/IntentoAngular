@@ -17,6 +17,7 @@ angular.module('weatherApp')
   self.deleteMarkers = deleteMarkers;
   self.searchFavorite = searchFavorite;
   self.gplusShare = gplusShare;
+  self.shareFB = shareFB;
    //variables map
   var addMarkersEnabled = true;
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -178,6 +179,20 @@ angular.module('weatherApp')
   function gplusShare() {
     window.open("https://plus.google.com/share?url="+currentURL,"","height=550,width=525,left=100,top=100,menubar=0");
     return false;
+  }
+
+  function shareFB(){
+    FB.ui({
+      method: 'feed',
+      name: 'Learning Facebook Dialogs',
+      picture: 'http://images.freeimages.com/images/previews/4b3/fire-1399126.jpg',
+      caption: 'Reference Documentation',
+      description: 'Image taken from "http://images.freeimages.com" and I prefere to use feed than share in facebook'
+ 
+    }, function(response){
+      // Debug response (optional)
+      console.log(response);
+    });
   }
 
  

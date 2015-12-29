@@ -70,15 +70,19 @@
   </div>
 
   <div class="share">
+
     <!-- Google Plus -->
     <a ng-click="maps.gplusShare()" class="share-btn google-plus">
         <i class="fa fa-google-plus fa-2x"></i>
     </a>
 
-    <!-- Facebook -->
-    <div class="fb-share-button" data-href="http://127.0.0.1:8080/maps.html" data-layout="button"></div>
+   <!-- Facebook -->
+    <a ng-click="maps.shareFB()" class="share-btn facebook">
+        <i class="fa fa-facebook fa-2x"></i>
+    </a>
   </div>
 
+  
   <div ui-view="">
   </div>
 </div>
