@@ -11,10 +11,16 @@
     <!-- endinject -->
     <!-- bower:css -->
     <!-- endbower -->
+
+    <meta property="og:url"           content="http://127.0.0.1:8080/index.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="TalosLearning" />
+    <meta property="og:description"   content="ChanChan" />
+    <meta property="og:image"         content="http://127.0.0.1:8080/img/logoApp.jpg" />
      
   </head>
   <body ng-app="weatherApp">
-      
+    <div id="fb-root"></div>
 
     <div ui-view="">
 
@@ -22,6 +28,8 @@
 
     <custom-modal></custom-modal>
     <log-out-modal></log-out-modal>
+    <comments-modal></comments-modal>
+    
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -45,6 +53,7 @@
     <script src="components/home/home.controller.js"></script>
     <script src="components/maps/maps.config.js"></script>
     <script src="components/maps/maps.controller.js"></script>
+    <script src="components/modal.comments/modal.comments.directive.js"></script>
     <script src="components/modal.login/modal.dialog.controller.js"></script>
     <script src="components/modal.login/modal.dialog.directive.js"></script>
     <script src="components/modal.logout/modal.logout.directive.js"></script>

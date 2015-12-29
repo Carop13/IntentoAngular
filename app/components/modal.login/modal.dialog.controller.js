@@ -40,7 +40,8 @@ angular.module('weatherApp')
   function statusChangeCallback(response) {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      alert("You ara full connected!!!");
+      document.getElementById('infoShow').innerHTML = "You ara connected!";
+      $('#myModalComment').modal('show');
       fBLoginSuccess();
       $('#myModal').modal('hide');
     } else if (response.status === 'not_authorized') {
@@ -110,6 +111,7 @@ angular.module('weatherApp')
         
         console.log(self.profileGoogle.getName());
         document.getElementById('btn-login').innerHTML = "Sign Out";
+        $('#myModal').modal('hide');
         self.ggleConnected = true;
         
       }, function(error) {

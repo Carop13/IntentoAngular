@@ -15,6 +15,7 @@ angular.module('weatherApp')
   var markerObj = {};
   var newMarker;
   var cont = 0;
+  
 
   // Call the service http function
   self.getWeather = function getWeather(city){
@@ -87,13 +88,14 @@ angular.module('weatherApp')
   self.infoWindowMarker = function infoWindowMarker(weatherInfo){
      // Construct a new InfoWindow.
     var actualCity = weatherInfo.name;
+    var actualWheater = weatherInfo.weather[0].description.charAt(0).toUpperCase() + weatherInfo.weather[0].description.slice(1).toLowerCase()
     markerObj.weatherInfo = weatherInfo;
     var infoWindow = new google.maps.InfoWindow({
-      content: weatherInfo.weather[0].description + "<br /><input type = 'button' onclick = '" + self.newFavorite( actualCity ) + "' value = 'Add to Favorite' />"
+      content:'<p class="actual-wheather">'+ actualWheater +'</p> <a onclick="newFavorite(\'' + actualCity + '\')"> <span class="glyphicon glyphicon-star"></span>  Add to favorites</a>'
     });
     infoWindow.open(self.map, newMarker);
   }
-
+  // + "<br /><input type = 'button' onclick = '" + self.newFavorite( actualCity ) + "' value = 'Add to Favorite' />"
   self.canAddMarkers = function canAddMarkers(){
     if(cont === 1){
       possibleAddMarkers = true;
@@ -104,6 +106,12 @@ angular.module('weatherApp')
     }
       
   }
+
+  window.someFunction = function (actualCity){
+    console.log("Legue a chancho");
+  } 
+
+
 
   // Sets the map on all markers in the array.
   self.setMapOnAll = function setMapOnAll(map) {
@@ -149,19 +157,23 @@ angular.module('weatherApp')
     self.getWeather(favorite);
   } 
 
-  self.newFavorite = function newFavorite(actualCity){
-    // var equal = false; 
+  window.newFavorite = function (actualCity){
+    var equal = false; 
     for(var i = 0; i < self.favorites.length; i++){
       if(actualCity.toUpperCase() == self.favorites[i].toUpperCase()){
-        self.favorites.push(actualCity.charAt(0).toUpperCase() + actualCity.slice(1).toLowerCase());
+        equal = true; 
+        console.log("igual");
+        document.getElementById('infoShow').innerHTML = actualCity + " is all ready in favorites!";
+        $('#myModalComment').modal('show');
       }
     }
-    // if(!equal){
-    //   if(confirm("Add this place as favorite?")){
-    //     self.favorites.push(city.charAt(0).toUpperCase() + city.slice(1).toLowerCase());
-    //   }
-    // }
-      
+    if(!equal){
+      console.log(actualCity);
+      self.favorites.push(actualCity.charAt(0).toUpperCase() + actualCity.slice(1).toLowerCase());
+      document.getElementById('infoShow').innerHTML = actualCity + " have been add to favorites!";
+      $('#myModalComment').modal('show');
+    }
+      console.log(self.favorites);
   }
 
   var currentURL = "http://127.0.0.1:8080/maps.html";
@@ -170,9 +182,5 @@ angular.module('weatherApp')
     return false;
   }
 
-  var currentURLFB = "http://localhost:8080/maps.html";
-  self.fbShare = function fbShare() {
-    window.open("http://www.facebook.com/sharer/sharer.php?u="+currentURLFB,"","height=550,width=525,left=100,top=100,menubar=0");
-    return false;
-  }
+ 
 });     

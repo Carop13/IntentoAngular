@@ -175,8 +175,7 @@ a {
     display: inline-block;
     color: #ffffff;
     border: none;
-    width: 65px;
-    height: 30px;
+    width: 40px;
     box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
     outline: none;
     text-align: center;
@@ -195,12 +194,20 @@ a {
   outline: none;
 }
 .share-btn.google-plus { background: #dd4b39; }
-.share-btn.facebook    { background: #3B5998; }
 
-.share-btn i{
-  margin-top: 8%;
+.fb-like{
+  height: 40px;
+  margin-left: 40%;
 }
 .logo-app{
   width: 60%;
   margin-left: 20%;
+}
+.actual-wheather{
+  font-weight: bold;
+  text-align: center;
+  margin: 0px;
+}
+.infoShow{
+  text-align: center;
 }
