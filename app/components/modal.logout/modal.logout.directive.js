@@ -3,7 +3,7 @@ angular.module('weatherApp')
   return {
     restrict: 'E',
     templateUrl:'components/modal.logout/modal.logout.html',
-    controller : 'ModalDialogController',
+    controller : 'ModalLoginController',
     controllerAs: 'modal'
   };
 }])

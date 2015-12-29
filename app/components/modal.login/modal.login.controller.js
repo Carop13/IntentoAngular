@@ -1,5 +1,5 @@
 angular.module('weatherApp')
-.controller('ModalDialogController', function() {
+.controller('ModalLoginController', function() {
 
   var self = this;
   self.show = false;
@@ -40,8 +40,6 @@ angular.module('weatherApp')
   function statusChangeCallback(response) {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      document.getElementById('infoShow').innerHTML = "You ara connected!";
-      $('#myModalComment').modal('show');
       fBLoginSuccess();
       $('#myModal').modal('hide');
     } else if (response.status === 'not_authorized') {
@@ -58,9 +56,12 @@ angular.module('weatherApp')
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       self.fbProfile = response;
-      console.log(response);
+      // console.log(response);
+      document.getElementById('myComments').innerHTML = "Sign in";
+      document.getElementById('infoShow').innerHTML = "Welcome " + self.fbProfile.name;
+      $('#myModalComment').modal('show');
       var accessToken = FB.getAuthResponse();
-      console.log(accessToken);
+      // console.log(accessToken);
     });
     document.getElementById('btn-login').innerHTML = "Sign Out";
     self.fbConnected = true;
@@ -73,13 +74,11 @@ angular.module('weatherApp')
     if(self.fbConnected){
       FB.logout(function(response) {
       // Person is now logged out
-        console.log("Logout");
         self.fbConnected = false;
        });
     };
     if(self.ggleConnected){
       auth2 = gapi.auth.signOut();
-      console.log("Sign out Google");
     }
     unloadData();
     document.getElementById('btn-login').innerHTML = " Sign in ";
@@ -105,11 +104,9 @@ angular.module('weatherApp')
     auth2.attachClickHandler(element, {},
       function(googleUser) {
         self.profileGoogle = googleUser.getBasicProfile();
-        // console.log('Name: ' + self.profileGoogle.getName());
-        // console.log('Image URL: ' + self.profileGoogle.getImageUrl());
-        // console.log('Email: ' + self.profileGoogle.getEmail());
-        
-        console.log(self.profileGoogle.getName());
+        document.getElementById('myComments').innerHTML = "Sign in";
+        document.getElementById('infoShow').innerHTML = "Welcome " + self.profileGoogle.getName();
+        $('#myModalComment').modal('show');
         document.getElementById('btn-login').innerHTML = "Sign Out";
         $('#myModal').modal('hide');
         self.ggleConnected = true;

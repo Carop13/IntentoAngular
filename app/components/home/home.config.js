@@ -4,9 +4,7 @@ angular.module('weatherApp')
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('home', {
     url : '/',
-    templateUrl : 'components/home/home.html',
-    controller : 'HomeController',
-    controllerAs : 'home'
+    templateUrl : 'components/home/home.html'
   });
 
 });

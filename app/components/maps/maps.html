@@ -59,17 +59,16 @@
     </table>
   </div>
 
-  
   <div ng-show="maps.show" >
     <div class="floating-panel">
-     <!--  <buttom class="btn btn-primary add-marker" type="submit" ng-click="maps.canAddMarkers()"> Add Markers </buttom> -->
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="maps.canAddMarkers()"> Block Markers </button>
       <button class="btn btn-primary" type="submit" ng-click="maps.clearMarkers()"> Hide Markers </button>
       <button class="btn btn-primary" type="submit" ng-click="maps.showMarkers()"> Show All Markers </button>
       <button class="btn btn-primary" type="submit" ng-click="maps.deleteMarkers()"> Delete Markers </button>
-      <!-- <buttom class="btn btn-primary" type="submit" ng-click="maps.newFavorite()"> Add Marker to Favorite </buttom> -->
     </div>
     <div id="map" ></div>
   </div>
+
   <div class="share">
     <!-- Google Plus -->
     <a ng-click="maps.gplusShare()" class="share-btn google-plus">
@@ -80,7 +79,6 @@
     <div class="fb-share-button" data-href="http://127.0.0.1:8080/maps.html" data-layout="button"></div>
   </div>
 
-    
   <div ui-view="">
   </div>
 </div>

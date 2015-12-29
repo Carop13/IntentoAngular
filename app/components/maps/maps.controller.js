@@ -6,8 +6,19 @@ angular.module('weatherApp')
   self.show = false;
   self.currentWeather = {};
   self.currentWeatherByLatLng = {};
+  self.getWeather = getWeather;
+  self.setMap = setMap;
+  self.addMarker = addMarker;
+  self.infoWindowMarker = infoWindowMarker;
+  self.canAddMarkers = canAddMarkers;
+  self.setMapOnAll = setMapOnAll;
+  self.clearMarkers = clearMarkers;
+  self.showMarkers = showMarkers;
+  self.deleteMarkers = deleteMarkers;
+  self.searchFavorite = searchFavorite;
+  self.gplusShare = gplusShare;
    //variables map
-  var possibleAddMarkers = true;
+  var addMarkersEnabled = true;
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var labelIndex = 0;
   self.map;
@@ -18,21 +29,30 @@ angular.module('weatherApp')
   
 
   // Call the service http function
-  self.getWeather = function getWeather(city){
-    var promise = weatherService.getWeather(city)
-    promise.then(function (weatherData) {
-      self.currentWeather = weatherData;
-      self.show = true;
-      self.setMap();
-    },
-    function (reason) {
-        
-    });
-    //self.newFavorite(city);
+  function getWeather(city){
+    if(city == ""){
+      document.getElementById('infoShow').innerHTML = "Add a city pleace";
+      $('#myModalComment').modal('show');
+    }else{
+      var promise = weatherService.getWeather(city)
+      promise.then(function (weatherData) {
+        if(weatherData.message == "Error: Not found city"){
+          document.getElementById('infoShow').innerHTML = "Add available city";
+          $('#myModalComment').modal('show');
+        }else{
+          self.currentWeather = weatherData;
+          self.show = true;
+          self.setMap();
+        }
+      },
+      function (reason) {
+         
+      });
+    }
   }
 
   // Deploy Map Country
-  self.setMap = function setMap() {
+  function setMap() {
     var myLatLng = { 
     lat: self.currentWeather.coord.lat,
     lng: self.currentWeather.coord.lon
@@ -53,9 +73,9 @@ angular.module('weatherApp')
   }
 
   //This function add a marker to the map
-  self.addMarker = function addMarker(location){
+  function addMarker(location){
     // TODO: addMarkersEnabled
-    if(!possibleAddMarkers){
+    if(!addMarkersEnabled){
       return;
     }
     newMarker = new google.maps.Marker({
@@ -78,14 +98,15 @@ angular.module('weatherApp')
          self.infoWindowMarker(weatherInfo);
         },
         function(reason) {
-          // TODO: display info window saying your internet is bad and you should feel bad.
+          document.getElementById('infoShow').innerHTML = " Your internet is bad and you should feel bad.";
+          $('#myModalComment').modal('show');
         });
     });
 
     new google.maps.event.trigger(newMarker, 'click' );
   }
 
-  self.infoWindowMarker = function infoWindowMarker(weatherInfo){
+  function infoWindowMarker(weatherInfo){
      // Construct a new InfoWindow.
     var actualCity = weatherInfo.name;
     var actualWheater = weatherInfo.weather[0].description.charAt(0).toUpperCase() + weatherInfo.weather[0].description.slice(1).toLowerCase()
@@ -95,65 +116,45 @@ angular.module('weatherApp')
     });
     infoWindow.open(self.map, newMarker);
   }
-  // + "<br /><input type = 'button' onclick = '" + self.newFavorite( actualCity ) + "' value = 'Add to Favorite' />"
-  self.canAddMarkers = function canAddMarkers(){
+  
+  function canAddMarkers(){
     if(cont === 1){
-      possibleAddMarkers = true;
+      addMarkersEnabled = true;
       cont--;
     }else{
-      possibleAddMarkers = false;
+      addMarkersEnabled = false;
       cont++;
     }
       
   }
 
-  window.someFunction = function (actualCity){
-    console.log("Legue a chancho");
-  } 
-
-
-
   // Sets the map on all markers in the array.
-  self.setMapOnAll = function setMapOnAll(map) {
+  function setMapOnAll(map) {
     for (var i = 0; i < self.markers.length; i++) {
       self.markers[i].marker.setMap(map);
     }
   }
 
   // Removes the markers from the map, but keeps them in the array.
-  self.clearMarkers = function clearMarkers() {
+  function clearMarkers() {
     self.setMapOnAll(null);
   }
 
   // Shows any markers currently in the array.
-  self.showMarkers = function showMarkers() {
+  function showMarkers() {
     self.setMapOnAll(self.map);
   }
 
   // Deletes all markers in the array by removing references to them.
-  self.deleteMarkers = function deleteMarkers() {
+  function deleteMarkers() {
     self.clearMarkers();
     labelIndex = 0;
     self.markers = [];
   }
 
-  //Delete a specific infoWindow
-  self.deteleMarkerById = function deteleMarkerById(id) {
-    //Find and remove the marker from the Array
-    for (var i = 0; i < self.markers.length; i++) {
-      if (self.markers[i].marker.id === id) {
-        //Remove the marker from Map                  
-        self.showMarkers();
-
-        //Remove the marker from array.
-        self.markers.splice(i, 1);
-      }
-    }
-  }
-
   self.favorites = ['Medellin', 'London', 'New York', 'Berlin', 'Toronto', 'Wellington', 'Halifax']; 
 
-  self.searchFavorite = function searchFavorite(favorite){
+  function searchFavorite(favorite){
     self.getWeather(favorite);
   } 
 
@@ -162,22 +163,19 @@ angular.module('weatherApp')
     for(var i = 0; i < self.favorites.length; i++){
       if(actualCity.toUpperCase() == self.favorites[i].toUpperCase()){
         equal = true; 
-        console.log("igual");
         document.getElementById('infoShow').innerHTML = actualCity + " is all ready in favorites!";
         $('#myModalComment').modal('show');
       }
     }
     if(!equal){
-      console.log(actualCity);
       self.favorites.push(actualCity.charAt(0).toUpperCase() + actualCity.slice(1).toLowerCase());
       document.getElementById('infoShow').innerHTML = actualCity + " have been add to favorites!";
       $('#myModalComment').modal('show');
     }
-      console.log(self.favorites);
   }
 
   var currentURL = "http://127.0.0.1:8080/maps.html";
-  self.gplusShare = function gplusShare() {
+  function gplusShare() {
     window.open("https://plus.google.com/share?url="+currentURL,"","height=550,width=525,left=100,top=100,menubar=0");
     return false;
   }
