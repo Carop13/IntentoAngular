@@ -112,7 +112,7 @@ angular.module('weatherApp')
     var actualWheater = weatherInfo.weather[0].description.charAt(0).toUpperCase() + weatherInfo.weather[0].description.slice(1).toLowerCase()
     markerObj.weatherInfo = weatherInfo;
     var infoWindow = new google.maps.InfoWindow({
-      content:'<p class="actual-wheather">'+ actualWheater +'</p> <a onclick="newFavorite(\'' + actualCity + '\')"> <span class="glyphicon glyphicon-star"></span>  Add to favorites</a>'
+      content:'<p class="actual-weather">'+ actualWheater +'</p> <a onclick="newFavorite(\'' + actualCity + '\')"> <span class="glyphicon glyphicon-star"></span>  Add to favorites</a>'
     });
     infoWindow.open(self.map, newMarker);
   }
