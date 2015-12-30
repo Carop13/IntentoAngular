@@ -1,5 +1,6 @@
 //Import express lib
 var express = require('express');
+var path = require('path');
 //create new instance of express server
 var app = express();
 
@@ -11,5 +12,6 @@ var server = app.listen(3000, function () {
 });
 
 //Set the maping for the static files
-app.use(express.static('./../app'));
+app.use(require('connect-livereload')());
+app.use(express.static( path.join(__dirname, '/../app'))); //'./../app'));
 //chancho
