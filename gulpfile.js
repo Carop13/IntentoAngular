@@ -1,8 +1,9 @@
 var gulp = require('gulp');
-var  connect = require('gulp-connect');
+var server = require('gulp-express');
+var connect = require('gulp-connect');
 var inject = require('gulp-inject');
 var wiredep = require('wiredep').stream;
- 
+
 gulp.task('connect', function() {
   connect.server({
     root: 'app',
@@ -38,4 +39,11 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('default', ['connect', 'wiredep', 'inject', 'watch']);
+gulp.task('server', function () {
+    // Start the server at the beginning of the task 
+    server.run(['server/app.js']);
+ 
+});
+
+gulp.task('default', ['connect', 'wiredep', 'inject', 'server',  'watch']);
+
