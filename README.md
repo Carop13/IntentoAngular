@@ -16,14 +16,17 @@ $ npm i -g gulp
 ```
 
 ```sh
-$ npm install --save gulp-install
-$ npm install --save-dev gulp-connect
-$ npm install --save wiredep
-$ npm install --save-dev gulp-inject
+$ npm install gulp-install --save
+$ npm install gulp-connect --save-dev 
+$ npm install wiredep --save
+$ npm install gulp-inject --save-dev 
+$ npm install gulp-open --save-dev 
+$ npm install gulp-clean --save-dev 
+$ npm install gulp-express --save-dev 
+$ npm install connect-livereload --save-dev
 ```
 ### Development
 
 ```sh
 $ gulp
 ```
-

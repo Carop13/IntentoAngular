@@ -28,11 +28,11 @@ gulp.task('clean:dist', function(option){
   .pipe(clean());
 });
 
-// gulp.task('watch', function () {
-//   gulp.watch(['./app/**/*.html'], ['reload']);
-//   gulp.watch(['./app/**/*.js'], ['reload']);
-//   gulp.watch(['./app/styles/*.css'], ['reload']);
-// });
+gulp.task('watch', function () {
+  gulp.watch(['./app/**/*.html'], server.notify);
+  gulp.watch(['./app/**/*.js'], server.notify);
+  gulp.watch(['./app/styles/*.css'], server.notify);
+});
  
 //Inject the bower.json dependencies in index.html file
 gulp.task('wiredep', function () {
@@ -62,7 +62,7 @@ gulp.task('server', function () {
 
 gulp.task('open', function(){
   gulp.src(__filename)
-  .pipe(open({uri: 'http://localhost:3000'}));
+  .pipe(open({uri: 'http://localhost:8080'}));
 });
 
 gulp.task('default', [
@@ -70,6 +70,7 @@ gulp.task('default', [
   'wiredep',
   'inject',
   'server',
-  'open'
+  'open',
+  'watch'
 ]);
 

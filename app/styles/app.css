@@ -104,8 +104,9 @@ a {
 a.navbar-brand{
   width: 300px;
 }
-}*/
+
 .floating-panel{
+  width: 80%;
   margin-left: 10%;
 }
 
