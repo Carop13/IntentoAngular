@@ -32,6 +32,7 @@ gulp.task('watch', function () {
   gulp.watch(['./app/**/*.html'], server.notify);
   gulp.watch(['./app/**/*.js'], server.notify);
   gulp.watch(['./app/styles/*.css'], server.notify);
+  gulp.watch(['./server/**/*.js'], server.notify);
 });
  
 //Inject the bower.json dependencies in index.html file
