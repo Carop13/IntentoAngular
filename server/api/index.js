@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-var Vote = require('../models');
+var Favorite = require('../models');
 var User = require('../models/users.js');
 
-// //GET /api/votes
-router.get('/votes', function (req, res){
-	console.log('Estoy en /votes')
+// //GET /api/favorites
+router.get('/favorites', function (req, res){
+	console.log('Estoy en /favorite')
 	
-	Vote.find({}, function (err, docs) {
+	Favorite.find({}, function (err, docs) {
 		if(err){
 			return res.sendStatus(500).json(err)
 		}
@@ -27,7 +27,7 @@ router.get('/users', function (req, res){
 	})
 });
 
-//POST /api/vote/<id>
+//POST /api/users
 router.post('/users', function (req, res) { 
 	User.create(req.body, function onFinish(err, user) {
 		if (err) {

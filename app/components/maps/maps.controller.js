@@ -5,7 +5,6 @@ angular.module('weatherApp')
   self.city = '';
   self.show = false;
   self.currentWeather = {};
-  self.currentWeatherByLatLng = {};
   self.getWeather = getWeather;
   self.setMap = setMap;
   self.addMarker = addMarker;
