@@ -4,16 +4,27 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Log in</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign in</h4>
       </div>
       <div class="modal-body">
-        <button class="btn btn-block btn-facebook" ng-click="modal.fBStatus()">
-          <i class="ion-social-facebook"></i> Sign in with Facebook
-        </button>
-        <button id="customBtn"  class="btn btn-block btn-google-plus" ng-click="modal.startApp()">
-         <span class="icon"></span>
-         <span class="buttonText"> Sign in with Google</span>
-        </button>
+        <form class="form-signin">
+          <input type="text" class="form-control sign-control" placeholder="Username" aria-describedby="basic-addon1">
+          <input type="password" class="form-control sign-control" placeholder="Password" aria-describedby="basic-addon1">
+          <button class="btn btn-block btn-signin"> Sign in </button>
+          <div class="options-login">
+            <a href="#"> Forgot your password? </a>
+            <a ui-sref="register" class="register"> Register </a>
+          </div>
+        </form>
+        <div class="other-login">
+          <button class="btn btn-block btn-facebook" ng-click="modal.fBStatus()">
+            <i class="ion-social-facebook"></i> Sign in with Facebook
+          </button>
+          <button id="customBtn"  class="btn btn-block btn-google-plus" ng-click="modal.startApp()">
+           <span class="icon"></span>
+           <span class="buttonText"> Sign in with Google</span>
+          </button>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="modal.loadData()">Close </button>
@@ -21,4 +32,3 @@
     </div>
   </div>
 </div>
-

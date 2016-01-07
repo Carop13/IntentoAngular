@@ -5,6 +5,6 @@ angular.module('weatherApp')
     url : '/maps',
     templateUrl : 'components/maps/maps.html',
     controller : 'MapsController',
-    controllerAs : 'maps',
+    controllerAs : 'maps'
   })
 })

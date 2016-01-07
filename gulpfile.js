@@ -56,8 +56,12 @@ gulp.task('inject', function () {
 });
 
 gulp.task('server', function () {
-    // Start the server at the beginning of the task 
-    server.run(['server/app.js']);
+    // Start the server at the beginning of the task
+    // server.run({
+    //   file:'server/app.js',
+    //   args:['--debug']
+    // });
+    server.run(['server/app.js', '--debug']);
  
 });
 

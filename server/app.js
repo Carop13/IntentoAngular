@@ -1,5 +1,7 @@
 //Import express lib
 var express = require('express');
+var bodyParser = require('body-parser')
+
 var path = require('path');
 //create new instance of express server
 var app = express();
@@ -23,6 +25,7 @@ db.once('open', function() {
 
 //Set the maping for the static files
 app.use(require('connect-livereload')());
+app.use(bodyParser.json());
 app.use(express.static( path.join(__dirname, '/../app'))); //'./../app'));
 
 app.use('/api', api);

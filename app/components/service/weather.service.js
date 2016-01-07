@@ -9,7 +9,6 @@ angular.module('weatherApp')
       }, function(error){
         console.log(error);
       }); 
-
   }
 
   function getWeatherByLatLng(lat, lng){

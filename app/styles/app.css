@@ -12,6 +12,8 @@ h1{
 }
 .form-control{
   margin: 1em 0 1em 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 td{
   width:50%;
@@ -151,11 +153,7 @@ a.navbar-brand{
   color: #fff;
   background-color: #cb3927;
 } 
-.share{
-  width: 80%;
-  margin-left: 10%;
 
-}
 .btn-googleplus{
   height: 25px;
   color: #fff;
@@ -164,39 +162,29 @@ a.navbar-brand{
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
-.fb-share-button{
-  margin-left: 40%;
-  height: 25px;
+
+.btn-signin:hover,
+.btn-signin:focus {
+  color: #fff;
+  background-color: #266ca5;
+} 
+
+.btn-signin{
+  color: #fff;
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  background-color: #337ab7;
+  border: 0px solid #d54331;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 
-.share-btn {
-    display: inline-block;
-    color: #ffffff;
-    border: none;
-    width: 45px;
-    height: 30px;
-    box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
-    outline: none;
-    text-align: center;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
-.share-btn:hover {
-  color: #eeeeee;
-}
-
-.share-btn:active {
-  position: relative;
-  top: 2px;
-  box-shadow: none;
-  color: #e2e2e2;
-  outline: none;
-}
-.share-btn.google-plus { background: #dd4b39; }
-.share-btn.facebook    { background: #3B5998; }
-
-.share i{
-  margin: 8%;
+.form-signin{
+  margin-bottom: 1%;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 .logo-app{
@@ -213,6 +201,85 @@ a.navbar-brand{
 }
 .navbar-toggle {
   background-color: #fff;
+}
+.register{
+  margin-left: 40%;
+}
+.options-login{
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+.sign-control{
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.register-place{
+  width: 40%;
+  margin-left: 30%;
+}
+.space{
+  margin-top: 2%; 
+  margin-bottom: 2%;
+}
+.create-account{
+  margin-top: 10%;
+  text-align: center;
+  font-weight: bold;
+}
+.fb-share-button{
+  margin-left: 40%;
+  height: 25px;
+}
+.share{
+  width: 80%;
+  margin-left: 10%;
+
+}
+.share-btn {
+    display: inline-block;
+    color: #ffffff;
+    border: none;
+    width: 45px;
+    height: 30px;
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+    outline: none;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.share-btn:hover {
+  color: #eeeeee;
+}
+.share-btn:active {
+  position: relative;
+  top: 2px;
+  box-shadow: none;
+  color: #e2e2e2;
+  outline: none;
+}
+.share-btn.google-plus { background: #dd4b39; }
+.share-btn.facebook    { background: #3B5998; }
+.share i{
+  margin: 8%;
+}
+
+.other-login{
+  margin-top: 2%;
+}
+.form-register{
+  margin-bottom: 1%;
+  border: 2px solid #ddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+input.form-control.extra{
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
 }
 
 @media (max-width: 800px) {
@@ -238,5 +305,9 @@ a.navbar-brand{
   }
   .collapse.in{
     display:block !important;
+  }
+  .register-place{
+    width: 50%;
+    margin-left: 25%;
   }
 }

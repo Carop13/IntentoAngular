@@ -25,4 +25,7 @@ angular.module('weatherApp', ['ui.router'])
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
     })();
 
+})
+.run(function($http){
+  $http.defaults.headers.common['Content-Type'] = 'application/json';
 });

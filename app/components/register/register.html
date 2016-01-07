@@ -1,0 +1,21 @@
+<caro-nav-bar></caro-nav-bar>
+
+<div class="register-place">
+  <div class="register-title">
+    <h4 class="create-account">Create your Account</h4>
+  </div>
+  <form class="form-register">
+    <div class="input-group input-group-lg sign-control">
+      <input type="text" class="form-control extra" ng-model="register.userName" placeholder="Username" >
+    </div>
+    <div class="input-group input-group-lg sign-control">
+      <input type="password" class="form-control extra" ng-model="register.userPassword" placeholder="Password" aria-describedby="sizing-addon1">
+    </div>
+    <div class="input-group input-group-lg sign-control">
+      <input type="email" class="form-control extra" ng-model="register.userEmail" placeholder="Email" aria-describedby="sizing-addon1">
+    </div>
+    <div class="space">
+      <button type="submit" ng-click="register.registerAccount(register.nameUser, register.namePassword, register.nameEmail)" class="btn btn-block btn-signin"> Create Account </button>
+    </div>
+  </form>
+</div>
