@@ -3,7 +3,10 @@ angular.module('weatherApp')
 
   var self = this;
   self.show = false;
-  var fbIdExist = false;
+  var idExist = false;
+  var anUser = false;
+  var forFB = false;
+  var forGGle = false;
   self.name = 'Login please';
   self.fBLogin = fBLogin;
   self.startApp = startApp;
@@ -17,6 +20,8 @@ angular.module('weatherApp')
   self.fBUserExist =fBUserExist;
   self.fbConnected = false;
   self.ggleConnected = false;
+  self.ggleUserExist = ggleUserExist;
+  self.profileGoogle = "";
   self.ggleID = "";
   self.fbProfile = "";
   self.unloadData = unloadData;
@@ -69,7 +74,8 @@ angular.module('weatherApp')
       var accessToken = FB.getAuthResponse();
       //console.log(accessToken);
       document.getElementById('myComments').innerHTML = "Sign in";
-      getFBUser();
+      forFB = true;
+      getUser();
     });
     document.getElementById('btn-login').innerHTML = "Sign Out";
     self.fbConnected = true;
@@ -91,24 +97,24 @@ angular.module('weatherApp')
     document.getElementById('btn-login').innerHTML = " Sign in ";
   };
 
-   function getFBUser(){
-    userService.getFBUserInformation()
-      .then(function (userData) {
-        //console.log(userData);
-        self.userData = userData;
-        fBUserExist();
-      });
-  }
+  //  function getFBUser(){
+  //   userService.getFBUserInformation()
+  //     .then(function (userData) {
+  //       //console.log(userData);
+  //       self.userData = userData;
+  //       fBUserExist();
+  //     });
+  // }
 
   function fBUserExist(){
     for(var i = 0; i < self.userData.length; i++){  
       if(self.userData[i].id == self.fbProfile.id){
-        fbIdExist = true;
+        idExist = true;
         return console.log("User exist");
       }
     }
     // console.log(self.fbProfile.id + " " + self.fbProfile.name );
-    if(!fbIdExist){
+    if(!idExist){
       var newUser = { id: self.fbProfile.id, name: self.fbProfile.name };
       return $http.post('/api/fbusers', newUser);
     }
@@ -144,14 +150,32 @@ angular.module('weatherApp')
         document.getElementById('btn-login').innerHTML = "Sign Out";
         $('#myModal').modal('hide');
         self.ggleConnected = true;
-        console.log(googleUser);
-        
+        console.log(self.profileGoogle);
+        //console.log("Chan chan:" + googleUser.getBasicProfile().KA);
+        forGGle = true;
+        getUser();
         
       }, function(error) {
         alert(JSON.stringify(error, undefined, 2));
       });
     
   }
+
+  function ggleUserExist(){
+    for(var i = 0; i < self.userData.length; i++){  
+      if(self.userData[i].id == self.profileGoogle.getId()){
+        idExist = true;
+        return console.log("User exist");
+      }
+    }
+    console.log("siguio");
+    if(!idExist){
+      var newUser = { id: self.profileGoogle.getId(), name: self.profileGoogle.getName() };
+      return $http.post('/api/fbusers', newUser);
+    }
+    modalComments( "Welcome " + self.fbProfile.name);
+  }
+
  
   function loadData(){
     self.show = true;
@@ -170,6 +194,7 @@ angular.module('weatherApp')
       || self.username == undefined || self.password == undefined ){
       modalComments("Fill all the information");
     }else{
+      anUser = true;
       getUser();
       
     }
@@ -180,7 +205,16 @@ angular.module('weatherApp')
     .then(function (userData) {
       //console.log(userData);
       self.userData = userData;
-      existingUserDB();
+      if(anUser){
+        existingUserDB();
+      } 
+      if(forFB){
+        fBUserExist();
+      }
+      if(forGGle){
+        ggleUserExist();
+      }
+      
     });
   }
 
