@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Favorite = require('../models');
 var User = require('../models/users.js');
+var FBUser = require('../models/fb.users.js');
 
 // //GET /api/favorites
 router.get('/favorites', function (req, res){
@@ -15,7 +16,16 @@ router.get('/favorites', function (req, res){
 		res.json(docs);
 	})
 });
+router.post('/favorites', function (req, res) { 
+	Favorite.create(req.body, function onFinish(err, user) {
+		if (err) {
+			return res.status(500).json(err);
+		}
+		return res.status(201).json(user);
+	});
+});
 
+//Get /api/users
 router.get('/users', function (req, res){
 	console.log('Estoy en /user')
 	
@@ -26,10 +36,28 @@ router.get('/users', function (req, res){
 		res.json(docs);
 	})
 });
-
-//POST /api/users
 router.post('/users', function (req, res) { 
 	User.create(req.body, function onFinish(err, user) {
+		if (err) {
+			return res.status(500).json(err);
+		}
+		return res.status(201).json(user);
+	});
+});
+
+//Get /api/fbusers
+router.get('/fbusers', function (req, res){
+	console.log('Estoy en /fbusers')
+	
+	FBUser.find({}, function (err, docs) {
+		if(err){
+			return res.sendStatus(500).json(err)
+		}
+		res.json(docs);
+	})
+});
+router.post('/fbusers', function (req, res) { 
+	FBUser.create(req.body, function onFinish(err, user) {
 		if (err) {
 			return res.status(500).json(err);
 		}

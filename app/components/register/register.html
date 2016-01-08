@@ -4,18 +4,31 @@
   <div class="register-title">
     <h4 class="create-account">Create your Account</h4>
   </div>
-  <form class="form-register">
-    <div class="input-group input-group-lg sign-control">
-      <input type="text" class="form-control extra" ng-model="register.userName" placeholder="Username" >
+  <form class="form-register" name="userForm"  ng-submit="submitForm(userForm.$valid)" novalidate>
+  
+    <!-- Username -->
+    <div class="input-group input-group-lg sign-control" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+      <input type="text" name="username" id="username-register" class="form-control extra" ng-model="register.userName"  ng-minlength="3" ng-maxlength="20" placeholder="Username">
+      <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+      <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
     </div>
-    <div class="input-group input-group-lg sign-control">
-      <input type="password" class="form-control extra" ng-model="register.userPassword" placeholder="Password" aria-describedby="sizing-addon1">
+    
+    <!-- Password -->
+    <div class="input-group input-group-lg sign-control" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+      <input type="password" id="password-register" name="password" class="form-control extra" ng-model="register.userPassword"  ng-minlength="8" ng-maxlength="40" placeholder="Password">
+      <p ng-show="userForm.password.$error.minlength" class="help-block">Username is too short.</p>
+      <p ng-show="userForm.password.$error.maxlength" class="help-block">Username is too long.</p>
     </div>
-    <div class="input-group input-group-lg sign-control">
-      <input type="email" class="form-control extra" ng-model="register.userEmail" placeholder="Email" aria-describedby="sizing-addon1">
+
+    <!-- Email -->
+    <div class="input-group input-group-lg sign-control" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >
+      <input type="email" id="email-register" name="email" class="form-control extra" ng-model="register.userEmail" placeholder="Email">
+      <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
     </div>
-    <div class="space">
-      <button type="submit" ng-click="register.registerAccount(register.nameUser, register.namePassword, register.nameEmail)" class="btn btn-block btn-signin"> Create Account </button>
+
+    <!-- Button to submit information -->
+    <div class="input-group input-group-lg sign-control sign-register">
+      <input type="submit" ng-click="register.registerAccount(register.nameUser, register.namePassword, register.nameEmail)" class="form-control extra btn-signin-register">
     </div>
   </form>
 </div>

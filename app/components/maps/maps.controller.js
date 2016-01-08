@@ -17,6 +17,7 @@ angular.module('weatherApp')
   self.searchFavorite = searchFavorite;
   self.gplusShare = gplusShare;
   self.shareFB = shareFB;
+  self.modalComments = modalComments;
    //variables map
   var addMarkersEnabled = true;
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -31,14 +32,12 @@ angular.module('weatherApp')
   // Call the service http function
   function getWeather(city){
     if(city == ""){
-      document.getElementById('infoShow').innerHTML = "Add a city pleace";
-      $('#myModalComment').modal('show');
+      modalComments("Add a city pleace");
     }else{
       var promise = weatherService.getWeather(city)
       promise.then(function (weatherData) {
         if(weatherData.message == "Error: Not found city"){
-          document.getElementById('infoShow').innerHTML = "Add available city";
-          $('#myModalComment').modal('show');
+          modalComments("Add available city");
         }else{
           self.currentWeather = weatherData;
           self.show = true;
@@ -98,8 +97,7 @@ angular.module('weatherApp')
          self.infoWindowMarker(weatherInfo);
         },
         function(reason) {
-          document.getElementById('infoShow').innerHTML = " Your internet is bad and you should feel bad.";
-          $('#myModalComment').modal('show');
+          modalComments(" Your internet is bad and you should feel bad.");
         });
     });
 
@@ -163,14 +161,12 @@ angular.module('weatherApp')
     for(var i = 0; i < self.favorites.length; i++){
       if(actualCity.toUpperCase() == self.favorites[i].toUpperCase()){
         equal = true; 
-        document.getElementById('infoShow').innerHTML = actualCity + " is all ready in favorites!";
-        $('#myModalComment').modal('show');
+        modalComments(actualCity + " is all ready in favorites!");
       }
     }
     if(!equal){
       self.favorites.push(actualCity.charAt(0).toUpperCase() + actualCity.slice(1).toLowerCase());
-      document.getElementById('infoShow').innerHTML = actualCity + " have been add to favorites!";
-      $('#myModalComment').modal('show');
+      modalComments(actualCity + " have been add to favorites!");
     }
   }
 
@@ -192,6 +188,11 @@ angular.module('weatherApp')
       // Debug response (optional)
       console.log(response);
     });
+  }
+
+  function modalComments(comment){
+    document.getElementById('infoShow').innerHTML = comment;
+    $('#myModalComment').modal('show');
   }
 
  

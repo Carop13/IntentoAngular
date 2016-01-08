@@ -4,6 +4,6 @@ angular.module('weatherApp')
     restrict: 'E',
     templateUrl:'components/modal.login/modal.login.html',
     controller : 'ModalLoginController',
-    controllerAs: 'modal'
+    controllerAs: 'modalLogin'
   };
 }])

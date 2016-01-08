@@ -1,8 +1,9 @@
 angular.module('weatherApp')
-.controller('ModalLoginController', function() {
+.controller('ModalLoginController', function(userService, $http) {
 
   var self = this;
   self.show = false;
+  var fbIdExist = false;
   self.name = 'Login please';
   self.fBLogin = fBLogin;
   self.startApp = startApp;
@@ -13,10 +14,18 @@ angular.module('weatherApp')
   self.fBStatus = fBStatus;
   self.statusChangeCallback = statusChangeCallback;
   self.fBLoginSuccess = fBLoginSuccess;
+  self.fBUserExist =fBUserExist;
   self.fbConnected = false;
   self.ggleConnected = false;
+  self.ggleID = "";
+  self.fbProfile = "";
   self.unloadData = unloadData;
-  
+  self.getUser = getUser;
+  self.username = "";
+  self.password = "";
+  self.account = account;
+  self.existingUserDB = existingUserDB;
+  self.modalComments = modalComments;
 
   //////////////////////////////////////////////////////////////////////
   
@@ -56,18 +65,16 @@ angular.module('weatherApp')
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       self.fbProfile = response;
-      // console.log(response);
-      document.getElementById('myComments').innerHTML = "Sign in";
-      document.getElementById('infoShow').innerHTML = "Welcome " + self.fbProfile.name;
-      $('#myModalComment').modal('show');
+      console.log(response);
       var accessToken = FB.getAuthResponse();
-      // console.log(accessToken);
+      //console.log(accessToken);
+      document.getElementById('myComments').innerHTML = "Sign in";
+      getFBUser();
     });
     document.getElementById('btn-login').innerHTML = "Sign Out";
     self.fbConnected = true;
     loadData();
   }
-
 
   function logout(){
     //facebook disconnect
@@ -83,7 +90,35 @@ angular.module('weatherApp')
     unloadData();
     document.getElementById('btn-login').innerHTML = " Sign in ";
   };
-  
+
+   function getFBUser(){
+    userService.getFBUserInformation()
+      .then(function (userData) {
+        //console.log(userData);
+        self.userData = userData;
+        fBUserExist();
+      });
+  }
+
+  function fBUserExist(){
+    for(var i = 0; i < self.userData.length; i++){  
+      if(self.userData[i].id == self.fbProfile.id){
+        fbIdExist = true;
+        return console.log("User exist");
+      }
+    }
+    // console.log(self.fbProfile.id + " " + self.fbProfile.name );
+    if(!fbIdExist){
+      var newUser = { id: self.fbProfile.id, name: self.fbProfile.name };
+      return $http.post('/api/fbusers', newUser);
+    }
+    modalComments( "Welcome " + self.fbProfile.name);
+  }
+
+
+
+  //////////////////////////////////////////////////////////////////////
+
   // google sign in
   var googleUser = {};
   function startApp() {
@@ -105,11 +140,12 @@ angular.module('weatherApp')
       function(googleUser) {
         self.profileGoogle = googleUser.getBasicProfile();
         document.getElementById('myComments').innerHTML = "Sign in";
-        document.getElementById('infoShow').innerHTML = "Welcome " + self.profileGoogle.getName();
-        $('#myModalComment').modal('show');
+        modalComments("Welcome " + self.profileGoogle.getName());
         document.getElementById('btn-login').innerHTML = "Sign Out";
         $('#myModal').modal('hide');
         self.ggleConnected = true;
+        console.log(googleUser);
+        
         
       }, function(error) {
         alert(JSON.stringify(error, undefined, 2));
@@ -117,7 +153,6 @@ angular.module('weatherApp')
     
   }
  
-
   function loadData(){
     self.show = true;
   }
@@ -125,8 +160,47 @@ angular.module('weatherApp')
     self.show = false;
   }
 
+ 
+ 
+ //////////////////////////////////////////////////////////////////////
 
+  function account(username, password){
+    console.log(self.username + "  " + self.password);
+    if(self.username == "" || self.password == "" 
+      || self.username == undefined || self.password == undefined ){
+      modalComments("Fill all the information");
+    }else{
+      getUser();
+      
+    }
+  };
 
+ function getUser(){
+  userService.getUserInformation()
+    .then(function (userData) {
+      //console.log(userData);
+      self.userData = userData;
+      existingUserDB();
+    });
+  }
+
+  function existingUserDB(){
+    for(var i = 0; i < self.userData.length; i++){  
+      if(self.username == self.userData[i].name && self.password == self.userData[i].password){
+        document.getElementById('btn-login').innerHTML = "Sign Out";
+        $('#myModal').modal('hide');
+        return modalComments(" Welcome " + self.username);
+      }else{
+        $('#myModal').modal('hide');
+        return modalComments(" Username or password is wrong! ");
+      }
+    };
+  }
+
+  function modalComments(comment){
+    document.getElementById('infoShow').innerHTML = comment;
+    $('#myModalComment').modal('show');
+  }
 
 });     
 
