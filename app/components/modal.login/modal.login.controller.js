@@ -7,6 +7,8 @@ angular.module('weatherApp')
   var anUser = false;
   var forFB = false;
   var forGGle = false;
+  var newUserId = "";
+  var newUserName = "";
   self.name = 'Login please';
   self.fBLogin = fBLogin;
   self.startApp = startApp;
@@ -17,10 +19,8 @@ angular.module('weatherApp')
   self.fBStatus = fBStatus;
   self.statusChangeCallback = statusChangeCallback;
   self.fBLoginSuccess = fBLoginSuccess;
-  self.fBUserExist =fBUserExist;
   self.fbConnected = false;
   self.ggleConnected = false;
-  self.ggleUserExist = ggleUserExist;
   self.profileGoogle = "";
   self.ggleID = "";
   self.fbProfile = "";
@@ -29,8 +29,8 @@ angular.module('weatherApp')
   self.username = "";
   self.password = "";
   self.account = account;
-  self.existingUserDB = existingUserDB;
   self.modalComments = modalComments;
+  self.logInAccount= logInAccount;
 
   //////////////////////////////////////////////////////////////////////
   
@@ -70,7 +70,7 @@ angular.module('weatherApp')
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       self.fbProfile = response;
-      console.log(response);
+      // console.log(response);
       var accessToken = FB.getAuthResponse();
       //console.log(accessToken);
       document.getElementById('myComments').innerHTML = "Sign in";
@@ -96,32 +96,6 @@ angular.module('weatherApp')
     unloadData();
     document.getElementById('btn-login').innerHTML = " Sign in ";
   };
-
-  //  function getFBUser(){
-  //   userService.getFBUserInformation()
-  //     .then(function (userData) {
-  //       //console.log(userData);
-  //       self.userData = userData;
-  //       fBUserExist();
-  //     });
-  // }
-
-  function fBUserExist(){
-    for(var i = 0; i < self.userData.length; i++){  
-      if(self.userData[i].id == self.fbProfile.id){
-        idExist = true;
-        return console.log("User exist");
-      }
-    }
-    // console.log(self.fbProfile.id + " " + self.fbProfile.name );
-    if(!idExist){
-      var newUser = { id: self.fbProfile.id, name: self.fbProfile.name };
-      return $http.post('/api/fbusers', newUser);
-    }
-    modalComments( "Welcome " + self.fbProfile.name);
-  }
-
-
 
   //////////////////////////////////////////////////////////////////////
 
@@ -150,8 +124,7 @@ angular.module('weatherApp')
         document.getElementById('btn-login').innerHTML = "Sign Out";
         $('#myModal').modal('hide');
         self.ggleConnected = true;
-        console.log(self.profileGoogle);
-        //console.log("Chan chan:" + googleUser.getBasicProfile().KA);
+        // console.log(self.profileGoogle);
         forGGle = true;
         getUser();
         
@@ -160,22 +133,6 @@ angular.module('weatherApp')
       });
     
   }
-
-  function ggleUserExist(){
-    for(var i = 0; i < self.userData.length; i++){  
-      if(self.userData[i].id == self.profileGoogle.getId()){
-        idExist = true;
-        return console.log("User exist");
-      }
-    }
-    console.log("siguio");
-    if(!idExist){
-      var newUser = { id: self.profileGoogle.getId(), name: self.profileGoogle.getName() };
-      return $http.post('/api/fbusers', newUser);
-    }
-    modalComments( "Welcome " + self.fbProfile.name);
-  }
-
  
   function loadData(){
     self.show = true;
@@ -183,13 +140,17 @@ angular.module('weatherApp')
   function unloadData(){
     self.show = false;
   }
-
- 
  
  //////////////////////////////////////////////////////////////////////
 
+  function welcomeModal(name){
+    $('#myModal').modal('hide');
+    return modalComments(name);
+  }
+
+
   function account(username, password){
-    console.log(self.username + "  " + self.password);
+    // console.log(self.username + "  " + self.password);
     if(self.username == "" || self.password == "" 
       || self.username == undefined || self.password == undefined ){
       modalComments("Fill all the information");
@@ -200,40 +161,54 @@ angular.module('weatherApp')
     }
   };
 
- function getUser(){
-  userService.getUserInformation()
+  function getUser(){
+    userService.getUserInformation()
     .then(function (userData) {
       //console.log(userData);
-      self.userData = userData;
-      if(anUser){
-        existingUserDB();
-      } 
-      if(forFB){
-        fBUserExist();
-      }
-      if(forGGle){
-        ggleUserExist();
-      }
-      
+       self.userData = userData;
+      logInAccount();
     });
-  }
-
-  function existingUserDB(){
-    for(var i = 0; i < self.userData.length; i++){  
-      if(self.username == self.userData[i].name && self.password == self.userData[i].password){
-        document.getElementById('btn-login').innerHTML = "Sign Out";
-        $('#myModal').modal('hide');
-        return modalComments(" Welcome " + self.username);
-      }else{
-        $('#myModal').modal('hide');
-        return modalComments(" Username or password is wrong! ");
-      }
-    };
   }
 
   function modalComments(comment){
     document.getElementById('infoShow').innerHTML = comment;
     $('#myModalComment').modal('show');
+  }
+
+  function logInAccount(){
+    for(var i = 0; i < self.userData.length; i++){
+      if(anUser){
+        if(self.username == self.userData[i].name && self.password == self.userData[i].password){
+          document.getElementById('btn-login').innerHTML = "Sign Out";
+          return welcomeModal(" Welcome " + self.username);
+        }else{
+          return welcomeModal(" Username or password is wrong! ");
+        }
+      }else if(forFB){
+        newUserId = self.fbProfile.id;
+        newUserName = self.fbProfile.name;
+        if(self.userData[i].id == self.fbProfile.id){
+          idExist = true;
+          // newUserId = self.fbProfile.id;
+          // newUserName = self.fbProfile.name;
+          document.getElementById('btn-login').innerHTML = "Sign Out";
+          return console.log("User exist");
+        }
+      } else if(forGGle){
+        newUserId = self.profileGoogle.getId();
+        newUserName = self.profileGoogle.getName();
+        if(self.userData[i].id == self.profileGoogle.getId()){
+          idExist = true;
+          return console.log("User exist");
+        }
+      }
+
+    };
+    if(!idExist){
+      var newUser = { id: newUserId, name: newUserName };
+      return $http.post('/api/users', newUser);
+      welcomeModal( "Welcome " + newUserName);
+    }
   }
 
 });     
