@@ -176,6 +176,7 @@ angular.module('weatherApp')
   }
 
   function logInAccount(){
+    document.getElementById('myComments').innerHTML = "";
     for(var i = 0; i < self.userData.length; i++){
       if(anUser){
         if(self.username == self.userData[i].name && self.password == self.userData[i].password){
@@ -189,16 +190,17 @@ angular.module('weatherApp')
         newUserName = self.fbProfile.name;
         if(self.userData[i].id == self.fbProfile.id){
           idExist = true;
-          // newUserId = self.fbProfile.id;
-          // newUserName = self.fbProfile.name;
-          document.getElementById('btn-login').innerHTML = "Sign Out";
+          welcomeModal( "Welcome " + newUserName);
+          // document.getElementById('btn-login').innerHTML = "Sign Out";
           return console.log("User exist");
         }
       } else if(forGGle){
         newUserId = self.profileGoogle.getId();
         newUserName = self.profileGoogle.getName();
+        // console.log(newUserId + " " + newUserName);
         if(self.userData[i].id == self.profileGoogle.getId()){
           idExist = true;
+          welcomeModal( "Welcome " + newUserName);
           return console.log("User exist");
         }
       }

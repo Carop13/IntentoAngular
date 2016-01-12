@@ -9,8 +9,8 @@ angular.module('weatherApp')
     }); 
   };
 
-  function getFBUserInformation(){
-    return $http.get('/api/fbusers').then(function(response){
+  function getUserInformationById(id){
+    return $http.get('/api/users', {id: id}).then(function(response){
       return response.data;
     }, function(error){
         console.log(error);
@@ -18,7 +18,6 @@ angular.module('weatherApp')
   };
 
   return {
-    'getUserInformation': getUserInformation,
-    'getFBUserInformation': getFBUserInformation
+    'getUserInformation': getUserInformation
   };
 });
