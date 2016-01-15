@@ -1,11 +1,21 @@
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var router = express.Router();
 
 var User = require('../models/users.js');
 
 //Get /api/users
 router.get('/users', function (req, res){
-	console.log('Estoy en /user')
+	if(req.session.lastPage) {
+	   	res.write('Last page was: ' + req.session.lastPage + '. ');
+		console.log(req.cookies);
+		console.log("////////////////////////////");
+		console.log(req.session);
+	 }
+
+	 req.session.lastPage = '/users';
+
 	
 	User.find({}, function (err, docs) {
 		if(err){
