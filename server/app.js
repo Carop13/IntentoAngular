@@ -1,11 +1,19 @@
 //Import express lib
 var express = require('express');
-var bodyParser = require('body-parser')
-
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var path = require('path');
 //create new instance of express server
 var app = express();
 var api = require('./api');
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'cookie_secret',
+    resave: true,
+    saveUninitialized: true
+}));
 
 //Run the server with specific port
 var server = app.listen(8080, function () {
