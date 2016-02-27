@@ -27,7 +27,6 @@ angular.module('weatherApp')
   var markerObj = {};
   var newMarker;
   var cont = 0;
-  
 
   // Call the service http function
   function getWeather(city){
