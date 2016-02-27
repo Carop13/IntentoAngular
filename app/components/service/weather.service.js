@@ -1,7 +1,7 @@
 angular.module('weatherApp')
 .factory('weatherService', function($http){
   var firstPart = 'http://api.openweathermap.org/data/2.5/weather?';
-  var secondPart = '&appid=2de143494c0b295cca9337e1e96b00e0'
+  var secondPart = '&appid=44db6a862fba0b067b1930da0d769e98'
 
   function getWeather(city){
     return $http.get(firstPart + 'q=' + city + secondPart).then(function(response){
